@@ -1,0 +1,50 @@
+---
+layout: layout.njk
+aktiv: media
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}innehall/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].media.navnamn }}"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].media -%}
+{%- set ui = t[kod] -%}
+{%- set sajten = sajt[kod] -%}
+{%- set allaMedia = collections.media | medLang(kod) | nyastForst -%}
+
+<section class="subpage-hero"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    <div class="kat-grid">
+        {% for kat in medietyper %}
+        {% set poster = allaMedia | medTyp(kat.typ) %}
+        {% if poster.length %}
+        {% set sektion = sidan[kat.nyckel] %}
+        {% set senaste = poster[0] %}
+        <a class="kat-card fade-in" href="/{{ loc.prefix }}innehall/{{ kat.slug }}/">
+            <div class="kat-thumb">
+                <img src="https://i.ytimg.com/vi/{{ senaste.data.url | youtubeId }}/hqdefault.jpg" alt="" loading="lazy">
+                <span class="kat-ikon">{{ kat.ikon }}</span>
+            </div>
+            <div class="kat-body">
+                <h3>{{ sektion.rubrik }}</h3>
+                <span class="kat-antal">{{ poster.length }} {{ ui.inslag }}</span>
+                <p>{{ sektion.undertitel }}</p>
+                <span class="kat-lank">{{ ui.utforska }} →</span>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <p style="text-align:center; margin-top:48px;">
+        {% if sajten.youtube %}<a class="hero-btn hero-btn--alt" href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ {{ ui.prenumerera }}</a>{% endif %}
+        {% if sajten.spotify %}<a class="hero-btn hero-btn--alt" href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 {{ ui.lyssnaSpotify }}</a>{% endif %}
+    </p>
+</section>

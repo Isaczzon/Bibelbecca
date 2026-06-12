@@ -19,7 +19,7 @@ permalink: "/{{ loc.prefix }}index.html"
         <h1>{{ sidan.hero.rubrik }}</h1>
         <p>{{ sidan.hero.undertitel }}</p>
         {% if sidan.hero.knapptext %}
-        <a class="hero-btn" href="/{{ loc.prefix }}media/">{{ sidan.hero.knapptext }}</a>
+        <a class="hero-btn" href="/{{ loc.prefix }}innehall/">{{ sidan.hero.knapptext }}</a>
         {% endif %}
         {% if sajten.youtube %}
         <a class="hero-btn hero-btn--ghost" href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ {{ ui.prenumerera }}</a>
@@ -49,7 +49,7 @@ permalink: "/{{ loc.prefix }}index.html"
         {% endif %}{% endfor %}
     </div>
     <p style="text-align:center; margin-top:32px;">
-        <a class="hero-btn hero-btn--alt" href="/{{ loc.prefix }}media/">{{ ui.seAlla }} →</a>
+        <a class="hero-btn hero-btn--alt" href="/{{ loc.prefix }}innehall/">{{ ui.seAlla }} →</a>
     </p>
 </section>
 {% endif %}

@@ -1,8 +1,8 @@
 {
-  "navnamn": "Videos & podcast",
+  "navnamn": "Watch & listen",
   "hero": {
-    "rubrik": "Videos, shorts, podcast & lives",
-    "undertitel": "All content from BibelBecca – gathered in one place"
+    "rubrik": "Watch & listen",
+    "undertitel": "All content from BibelBecca – choose what you want to watch or listen to"
   },
   "videor": {
     "rubrik": "Videos",
@@ -16,8 +16,16 @@
     "rubrik": "Podcast",
     "undertitel": "The BibelBecca podcast – longer conversations and teaching. Also available on Spotify."
   },
+  "serier": {
+    "rubrik": "How do you get to heaven?",
+    "undertitel": "The series that walks through salvation step by step – from the preface to part 11"
+  },
   "lives": {
     "rubrik": "Lives",
-    "undertitel": "Live streams where you can ask questions directly"
+    "undertitel": "Live streams with Bible study where you can ask questions directly"
+  },
+  "studietips": {
+    "rubrik": "Becca's Bible Study Tips",
+    "undertitel": "Practical tips that make Bible reading easier and more fun"
   }
 }

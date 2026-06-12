@@ -22,7 +22,13 @@
       "namn": "Namn",
       "dittNamn": "Ditt namn",
       "amne": "Ämne",
-      "amnen": ["Allmän fråga", "Ämnesförslag", "Sponsring", "Samarbete", "Annat"],
+      "amnen": [
+        "Allmän fråga",
+        "Ämnesförslag",
+        "Sponsring",
+        "Samarbete",
+        "Annat"
+      ],
       "meddelande": "Meddelande",
       "skrivHar": "Skriv ditt meddelande här...",
       "sakerhetsfraga": "Säkerhetsfråga: vad är",
@@ -32,7 +38,10 @@
       "felSvar": "Fel svar – försök igen.",
       "felSkick": "Något gick fel. Försök igen senare eller maila mig direkt.",
       "samtycke": "Genom att skicka detta meddelande samtycker du till att dina uppgifter behandlas för att kunna besvara ditt meddelande."
-    }
+    },
+    "inslag": "inslag",
+    "utforska": "Utforska",
+    "tillbaka": "← Alla kategorier"
   },
   "en": {
     "sprak": "Language",
@@ -57,7 +66,13 @@
       "namn": "Name",
       "dittNamn": "Your name",
       "amne": "Subject",
-      "amnen": ["General question", "Topic suggestion", "Sponsorship", "Collaboration", "Other"],
+      "amnen": [
+        "General question",
+        "Topic suggestion",
+        "Sponsorship",
+        "Collaboration",
+        "Other"
+      ],
       "meddelande": "Message",
       "skrivHar": "Write your message here...",
       "sakerhetsfraga": "Security question: what is",
@@ -67,6 +82,9 @@
       "felSvar": "Wrong answer – try again.",
       "felSkick": "Something went wrong. Please try again later or email me directly.",
       "samtycke": "By sending this message you consent to your information being processed in order to reply to your message."
-    }
+    },
+    "inslag": "items",
+    "utforska": "Explore",
+    "tillbaka": "← All categories"
   }
 }

@@ -84,7 +84,7 @@ collections:
           - { name: body, label: Innehåll (HTML), widget: markdown, i18n: true }
 
       - name: media
-        label: Videor & podcast (sidhuvud)
+        label: Titta & lyssna (sidhuvud & kategorier)
         file: src/_data/pages/{{locale}}/media.json
         i18n: true
         fields:
@@ -118,8 +118,22 @@ collections:
             fields:
               - { name: rubrik, label: Rubrik, widget: string, i18n: true }
               - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: serier
+            label: Sektion Serien
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
           - name: lives
             label: Sektion Lives
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: studietips
+            label: Sektion Studietips
             widget: object
             i18n: true
             fields:
@@ -213,12 +227,14 @@ collections:
         label: Typ
         widget: select
         i18n: duplicate
-        hint: "Styr vilken sektion inslaget visas i på sidan Videor & podcast."
+        hint: "Styr vilken kategorisida inslaget visas på under Titta & lyssna."
         options:
           - { label: "Video", value: "Video" }
           - { label: "Short (stående kortvideo)", value: "Short" }
           - { label: "Podcastavsnitt", value: "Podcast" }
+          - { label: "Serien (Hur kommer man till himlen?)", value: "Serie" }
           - { label: "Live", value: "Live" }
+          - { label: "BibelstudieTips", value: "Studietips" }
       - { name: datum, label: Publiceringsdatum, widget: datetime, format: "YYYY-MM-DD", time_format: false, i18n: duplicate }
       - { name: url, label: YouTube-URL, widget: string, i18n: duplicate, hint: "Klistra in länken till videon, t.ex. https://www.youtube.com/watch?v=..." }
       - { name: beskrivning, label: Beskrivning, widget: text, required: false, i18n: true }

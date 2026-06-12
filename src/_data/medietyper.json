@@ -1,0 +1,8 @@
+[
+  { "slug": "videor", "typ": "Video", "nyckel": "videor", "ikon": "🎬" },
+  { "slug": "podcast", "typ": "Podcast", "nyckel": "podcast", "ikon": "🎙️" },
+  { "slug": "serien", "typ": "Serie", "nyckel": "serier", "ikon": "🛤️" },
+  { "slug": "shorts", "typ": "Short", "nyckel": "shorts", "ikon": "📱" },
+  { "slug": "lives", "typ": "Live", "nyckel": "lives", "ikon": "🔴" },
+  { "slug": "studietips", "typ": "Studietips", "nyckel": "studietips", "ikon": "💡" }
+]

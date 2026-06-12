@@ -1,8 +1,8 @@
 {
-  "navnamn": "Videor & podcast",
+  "navnamn": "Titta & lyssna",
   "hero": {
-    "rubrik": "Videor, shorts, podcast & lives",
-    "undertitel": "Allt innehåll från BibelBecca – samlat på ett ställe"
+    "rubrik": "Titta & lyssna",
+    "undertitel": "Allt innehåll från BibelBecca – välj vad du vill se eller lyssna på"
   },
   "videor": {
     "rubrik": "Videor",
@@ -16,8 +16,16 @@
     "rubrik": "Podcast",
     "undertitel": "BibelBecca-podden – längre samtal och undervisning. Finns även på Spotify."
   },
+  "serier": {
+    "rubrik": "Hur kommer man till himlen?",
+    "undertitel": "Serien som går igenom frälsningen steg för steg – från förord till del 11"
+  },
   "lives": {
     "rubrik": "Lives",
-    "undertitel": "Livesändningar där du kan ställa frågor direkt"
+    "undertitel": "Livesändningar med bibelstudium där du kan ställa frågor direkt"
+  },
+  "studietips": {
+    "rubrik": "Beccas BibelstudieTips",
+    "undertitel": "Konkreta tips som gör bibelläsningen enklare och roligare"
   }
 }

@@ -1,6 +1,6 @@
 ---
 titel: "VEM kommer till HIMLEN?"
-typ: Video
+typ: Serie
 datum: 2023-12-08
 url: https://www.youtube.com/watch?v=9Kao5ZpkWCk
 ---

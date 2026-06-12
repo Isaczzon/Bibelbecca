@@ -412,6 +412,90 @@ main { padding-top: 72px; }
 .shorts-list .video-block h3 + .video-date { padding-bottom: 12px; }
 .shorts-list .video-block .video-description { padding: 6px 14px 14px; font-size: 13px; }
 
+/* === KATEGORIKORT (navet Titta & lyssna) === */
+.kat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+.kat-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.kat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--guld);
+}
+.kat-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+.kat-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.85;
+    transition: opacity 0.2s, transform 0.3s;
+}
+.kat-card:hover .kat-thumb img { opacity: 1; transform: scale(1.03); }
+.kat-ikon {
+    position: absolute;
+    left: 14px; bottom: 12px;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: rgba(20,20,20,0.85);
+    border: 1px solid var(--guld);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+.kat-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex-grow: 1; }
+.kat-body h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    color: var(--text-heading);
+    margin-bottom: 6px;
+}
+.kat-antal {
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+.kat-body p { color: var(--text-body); font-size: 14px; line-height: 1.6; margin-bottom: 14px; flex-grow: 1; }
+.kat-lank { color: var(--accent); font-weight: 600; font-size: 14px; }
+.kat-card:hover .kat-lank { text-decoration: underline; }
+
+/* === TILLBAKA-LÄNK === */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+.back-link:hover { text-decoration: underline; }
+
 /* === EMPTY STATE (media-sektioner utan inlägg) === */
 .media-empty {
     text-align: center;

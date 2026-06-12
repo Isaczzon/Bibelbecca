@@ -47,7 +47,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="/{{ lokal.prefix }}" {% if aktiv == 'hem' %}class="active"{% endif %}>{{ ui.hem }}</a></li>
             <li><a href="/{{ lokal.prefix }}om/" {% if aktiv == 'om' %}class="active"{% endif %}>{{ sidor.om.navnamn }}</a></li>
-            <li><a href="/{{ lokal.prefix }}media/" {% if aktiv == 'media' %}class="active"{% endif %}>{{ sidor.media.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}innehall/" {% if aktiv == 'media' %}class="active"{% endif %}>{{ sidor.media.navnamn }}</a></li>
             <li><a href="/{{ lokal.prefix }}sponsra/" {% if aktiv == 'sponsra' %}class="active"{% endif %}>{{ sidor.sponsra.navnamn }}</a></li>
             <li><a href="/{{ lokal.prefix }}kontakt/" {% if aktiv == 'kontakt' %}class="active"{% endif %}>{{ sidor.kontakt.navnamn }}</a></li>
         </ul>
@@ -96,7 +96,7 @@
             <h4>{{ ui.snabblankar }}</h4>
             <p><a href="/{{ lokal.prefix }}">{{ ui.hem }}</a></p>
             <p><a href="/{{ lokal.prefix }}om/">{{ sidor.om.navnamn }}</a></p>
-            <p><a href="/{{ lokal.prefix }}media/">{{ sidor.media.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}innehall/">{{ sidor.media.navnamn }}</a></p>
             <p><a href="/{{ lokal.prefix }}sponsra/">{{ sidor.sponsra.navnamn }}</a></p>
             <p><a href="/{{ lokal.prefix }}kontakt/">{{ sidor.kontakt.navnamn }}</a></p>
         </div>
