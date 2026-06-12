@@ -1,0 +1,37 @@
+name: Hämta nytt från YouTube
+
+on:
+  schedule:
+    # Varje natt 03:30 UTC – nya videor/shorts/avsnitt blir md-filer.
+    # Deploy-workflowen bygger sajten 04:00 och plockar upp ändringarna.
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hamta-nytt
+  cancel-in-progress: false
+
+jobs:
+  hamta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Hämta nya inslag
+        run: node scripts/hamta-nytt.mjs
+      - name: Committa om något är nytt
+        run: |
+          if [[ -n "$(git status --porcelain src/media)" ]]; then
+            git config user.name "bibelbecca-bot"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add src/media
+            git commit -m "Auto: nya inslag från YouTube-kanalen"
+            git push
+          else
+            echo "Inget nytt idag."
+          fi

@@ -83,5 +83,20 @@ Gå till repots **Settings → Collaborators**, klicka **Add people** och ange B
 - [ ] Sponsorbehoven i `src/sponsorbehov/` är exempel – Becca uppdaterar dem i CMS:et
 
 > Allt kanalinnehåll (videor, shorts, podcast, lives) importerades från YouTube 2026-06-12.
-> Nya inslag läggs till i CMS:et under **Videor, podcast & lives** – klistra in YouTube-länken och välj typ.
 > Engelska titlar är översatta för videor/podcast/lives; shorts behåller den svenska titeln på båda språken.
+
+## Automatisk hämtning av nytt innehåll
+
+Varje natt kör [.github/workflows/hamta-nytt.yml](.github/workflows/hamta-nytt.yml) skriptet
+`scripts/hamta-nytt.mjs` (03:30 UTC) som jämför kanalens flikar och spellistor med sajtens
+innehåll och skapar md-filer för allt som saknas. Deploy-workflowen bygger sedan om sajten
+04:00 UTC, så nya videor dyker upp på sajten automatiskt inom ett dygn – utan att någon
+behöver göra något.
+
+- Typen sätts via spellistorna (podcast/serien/studietips/lives), shorts-fliken respektive videofliken.
+- Befintliga filer rörs aldrig – Beccas redigeringar i CMS:et skrivs inte över.
+- Nya inslag får svensk titel även på engelska sidan; vill man översätta görs det i CMS:et.
+- Skriptet använder YouTubes interna webb-API (inofficiellt). Skulle YouTube ändra formatet
+  slutar hämtningen fungera tills skriptet uppdateras – sajten påverkas inte, och inslag kan
+  alltid läggas in manuellt i CMS:et under tiden.
+- Kan köras manuellt: `node scripts/hamta-nytt.mjs` (eller via "Run workflow" på GitHub).

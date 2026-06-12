@@ -3,6 +3,10 @@ name: Bygg och publicera till GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # Bygg om varje natt efter att "Hämta nytt från YouTube" (03:30) kört –
+    # commits gjorda med GITHUB_TOKEN triggar inte push-bygget automatiskt
+    - cron: "0 4 * * *"
   workflow_dispatch:
 
 permissions:
