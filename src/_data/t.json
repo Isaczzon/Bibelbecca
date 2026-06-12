@@ -42,7 +42,9 @@
     "inslag": "inslag",
     "utforska": "Utforska",
     "tillbaka": "← Alla kategorier",
-    "visaFler": "Visa fler"
+    "visaFler": "Visa fler",
+    "foljInstagram": "Följ på Instagram",
+    "foljTiktok": "Följ på TikTok"
   },
   "en": {
     "sprak": "Language",
@@ -87,6 +89,8 @@
     "inslag": "items",
     "utforska": "Explore",
     "tillbaka": "← All categories",
-    "visaFler": "Show more"
+    "visaFler": "Show more",
+    "foljInstagram": "Follow on Instagram",
+    "foljTiktok": "Follow on TikTok"
   }
 }
