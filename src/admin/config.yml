@@ -284,8 +284,8 @@ collections:
           - { name: tiktok, label: TikTok-länk, widget: string, required: false, i18n: duplicate }
           - { name: spotify, label: Spotify-länk, widget: string, required: false, i18n: duplicate, hint: "Lämna tom så döljs Spotify-knapparna" }
           - { name: foljare_youtube, label: Prenumeranter på YouTube, widget: number, value_type: int, required: false, i18n: duplicate, hint: "Visas som räknare på startsidan. Uppdateras automatiskt varje natt." }
-          - { name: foljare_tiktok, label: Följare på TikTok, widget: number, value_type: int, required: false, i18n: duplicate, hint: "Visas som räknare på startsidan. 0 = dölj." }
-          - { name: foljare_instagram, label: Följare på Instagram, widget: number, value_type: int, required: false, i18n: duplicate, hint: "Visas som räknare på startsidan. 0 = dölj." }
+          - { name: foljare_tiktok, label: Följare på TikTok, widget: number, value_type: int, required: false, i18n: duplicate, hint: "Visas som räknare på startsidan. Uppdateras automatiskt varje natt." }
+          - { name: foljare_instagram, label: Följare på Instagram, widget: number, value_type: int, required: false, i18n: duplicate, hint: "Visas som räknare på startsidan. Uppdateras automatiskt varje natt." }
           - { name: lyssnare_spotify, label: Lyssnare på Spotify, widget: number, value_type: int, required: false, i18n: duplicate, hint: "Hämtas från Spotify for Podcasters. 0 = dölj." }
           - { name: copyright, label: Copyright-text, widget: string, i18n: true }
           - { name: formspree_id, label: Formspree-ID, widget: string, hint: "ID:t från formspree.io för kontaktformuläret", i18n: duplicate }

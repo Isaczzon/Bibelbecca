@@ -150,28 +150,60 @@ for (const id of nya) {
 
 console.log(nya.length ? `Klart – ${nya.length} nya inslag tillagda.` : "Inget nytt idag.");
 
-// --- Uppdatera YouTube-prenumerantantalet (visas som räknare på startsidan) ---
-// TikTok/Instagram/Spotify uppdateras manuellt i CMS:et – de döljer sina
-// siffror bakom inloggning/anti-bot, så de går inte att hämta pålitligt.
+// --- Uppdatera följarsiffrorna (räknarna på startsidan) ---
+// YouTube/TikTok/Instagram hämtas här varje natt. Spotify-lyssnare visas
+// inte publikt någonstans, så den siffran uppdateras manuellt i CMS:et
+// (Becca ser den i Spotify for Podcasters). Misslyckas en hämtning behålls
+// det gamla värdet – sajten visar aldrig något tomt.
+
+function sparaStat(falt, antal) {
+  for (const sprak of ["sv", "en"]) {
+    const fil = path.join(ROT, "src", "_data", "sajt", `${sprak}.json`);
+    const data = JSON.parse(readFileSync(fil, "utf8"));
+    if (data[falt] !== antal) {
+      data[falt] = antal;
+      writeFileSync(fil, JSON.stringify(data, null, 2) + "\n");
+    }
+  }
+  console.log(`${falt}: ${antal}`);
+}
+
+// YouTube – prenumerantantal från kanalsidan ("1 250 prenumeranter", "12,5 tn …")
 try {
   const kanal = await yt("browse", { browseId: KANAL });
   const texter = hitta(kanal, "content").filter((v) => typeof v === "string");
   const traff = texter.map((t) => t.match(/^([\d\s.,]+)\s*(tn|mn)?\s*prenumeranter/i)).find(Boolean);
   if (traff) {
     const tal = parseFloat(traff[1].replace(/\s/g, "").replace(",", "."));
-    const antal = Math.round(tal * (traff[2] === "tn" ? 1e3 : traff[2] === "mn" ? 1e6 : 1));
-    for (const sprak of ["sv", "en"]) {
-      const fil = path.join(ROT, "src", "_data", "sajt", `${sprak}.json`);
-      const data = JSON.parse(readFileSync(fil, "utf8"));
-      if (data.foljare_youtube !== antal) {
-        data.foljare_youtube = antal;
-        writeFileSync(fil, JSON.stringify(data, null, 2) + "\n");
-      }
-    }
-    console.log(`YouTube-prenumeranter: ${antal}`);
-  } else {
-    console.warn("Hittade inget prenumerantantal i kanalsvaret.");
-  }
+    sparaStat("foljare_youtube", Math.round(tal * (traff[2] === "tn" ? 1e3 : traff[2] === "mn" ? 1e6 : 1)));
+  } else console.warn("YouTube: hittade inget prenumerantantal.");
 } catch (fel) {
-  console.warn(`Kunde inte uppdatera prenumerantantalet: ${fel.message}`);
+  console.warn(`YouTube-antal misslyckades: ${fel.message}`);
+}
+
+// TikTok – exakt followerCount ligger i profilsidans inbäddade JSON
+try {
+  const svar = await fetch("https://www.tiktok.com/@bibelbecca", {
+    headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" },
+  });
+  const traff = (await svar.text()).match(/"followerCount":(\d+)/);
+  if (traff) sparaStat("foljare_tiktok", parseInt(traff[1], 10));
+  else console.warn("TikTok: hittade ingen followerCount.");
+} catch (fel) {
+  console.warn(`TikTok-antal misslyckades: ${fel.message}`);
+}
+
+// Instagram – og:description ("960 Followers, …") serveras till sökmotor-agenter
+try {
+  const svar = await fetch("https://www.instagram.com/bibelbecca/", {
+    headers: { "user-agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" },
+  });
+  const traff = (await svar.text()).match(/content="([\d.,]+)([KMkm]?) Followers/);
+  if (traff) {
+    const tal = parseFloat(traff[1].replace(/,/g, ""));
+    const faktor = /k/i.test(traff[2]) ? 1e3 : /m/i.test(traff[2]) ? 1e6 : 1;
+    sparaStat("foljare_instagram", Math.round(tal * faktor));
+  } else console.warn("Instagram: hittade inget följarantal.");
+} catch (fel) {
+  console.warn(`Instagram-antal misslyckades: ${fel.message}`);
 }

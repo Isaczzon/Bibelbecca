@@ -94,6 +94,10 @@ innehåll och skapar md-filer för allt som saknas. Deploy-workflowen bygger sed
 behöver göra något.
 
 - Typen sätts via spellistorna (podcast/serien/studietips/lives), shorts-fliken respektive videofliken.
+- Skriptet uppdaterar också följarräknarna på startsidan: YouTube (kanalsidan), TikTok
+  (profilsidans inbäddade JSON) och Instagram (og:description). Spotify-lyssnare visas inte
+  publikt av Spotify och uppdateras därför manuellt i CMS:et under Inställningar.
+  Misslyckas en hämtning behålls det gamla värdet.
 - Befintliga filer rörs aldrig – Beccas redigeringar i CMS:et skrivs inte över.
 - Nya inslag får svensk titel även på engelska sidan; vill man översätta görs det i CMS:et.
 - Skriptet använder YouTubes interna webb-API (inofficiellt). Skulle YouTube ändra formatet
