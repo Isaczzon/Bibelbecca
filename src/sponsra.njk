@@ -66,9 +66,9 @@ eleventyComputed:
 {% if sidan.cta.rubrik %}
 <section class="section" style="text-align:center; padding-top:0;">
     <div class="fade-in">
-        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--text-heading); margin-bottom:16px;">{{ sidan.cta.rubrik }}</h2>
+        <h2 style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--text-heading); margin-bottom:16px;">{{ sidan.cta.rubrik }}</h2>
         <p style="color:var(--text-muted); max-width:500px; margin:0 auto 24px;">{{ sidan.cta.text }}</p>
-        <a class="hero-btn hero-btn--plum" href="/{{ loc.prefix }}kontakt/">{{ sidan.cta.knapptext }}</a>
+        <a class="hero-btn hero-btn--alt" href="/{{ loc.prefix }}kontakt/">{{ sidan.cta.knapptext }}</a>
     </div>
 </section>
 {% endif %}

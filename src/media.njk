@@ -37,7 +37,7 @@ eleventyComputed:
     {% else %}
     <div class="media-empty fade-in">
         <p>{{ ui.mediaTomt }}</p>
-        {% if sajten.youtube %}<a class="hero-btn hero-btn--plum" href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ {{ ui.prenumerera }}</a>{% endif %}
+        {% if sajten.youtube %}<a class="hero-btn hero-btn--alt" href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ {{ ui.prenumerera }}</a>{% endif %}
     </div>
     {% endif %}
 </div>
@@ -57,7 +57,7 @@ eleventyComputed:
 {{ mediaSektion(sidan.podcast.rubrik, sidan.podcast.undertitel, allaMedia | medTyp('Podcast'), 'podcast') }}
 {% if sajten.spotify %}
 <p style="text-align:center; padding-bottom:48px; margin-top:-48px;">
-    <a class="hero-btn hero-btn--plum" href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 {{ ui.lyssnaSpotify }}</a>
+    <a class="hero-btn hero-btn--alt" href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 {{ ui.lyssnaSpotify }}</a>
 </p>
 {% endif %}
 

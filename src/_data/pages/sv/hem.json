@@ -1,8 +1,9 @@
 {
   "navnamn": "Hem",
   "hero": {
-    "rubrik": "Lär känna Bibeln på riktigt",
-    "undertitel": "Bibelundervisning, podcast och ärliga samtal om tro – med Becca. Nya videor varje vecka på YouTube.",
+    "badge": "Bibelundervisning · Podcast · Shorts",
+    "rubrik": "BibelBecca",
+    "undertitel": "Bibel, tro & gärna lite kontroversiellt",
     "knapptext": "Utforska videor & podcast"
   },
   "senaste": {

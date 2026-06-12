@@ -1,28 +1,29 @@
 :root {
-    --plum-dark: #4B2E5C;
-    --plum-mid: #74489B;
-    --plum-light: #9C77B4;
-    --plum-pale: #F1EAF6;
-    --gold: #C9963C;
-    --gold-light: #DDB46A;
-    --gold-pale: #F8F1E3;
+    /* BibelBeccas kanalfärger: svart läder, guld/gul och vitt */
+    --svart: #141414;
+    --svart-mjuk: #1f1f1f;
+    --guld: #E5C04B;
+    --guld-ljus: #F2DC7E;
+    --guld-mork: #9A7B1E;
+    --guld-pale: #FAF4DE;
     --gray-dark: #4A4A4A;
     --gray-mid: #7A7A7A;
     --gray-light: #B0B0B0;
     --gray-pale: #EDEDED;
-    --off-white: #FBFAF8;
+    --off-white: #FBFAF7;
     --white: #FFFFFF;
     --black: #1A1A1A;
 
     /* Semantic tokens (these are what most rules consume; flipped per theme). */
     --bg-page: var(--off-white);
     --bg-card: var(--white);
-    --bg-section-alt: var(--plum-pale);
-    --bg-section-gold: var(--gold-pale);
+    --bg-section-alt: #F6F1E0;
+    --bg-section-gold: var(--guld-pale);
     --text-body: var(--gray-dark);
     --text-muted: var(--gray-mid);
-    --text-heading: var(--plum-dark);
+    --text-heading: var(--black);
     --text-strong: var(--black);
+    --accent: var(--guld-mork);
     --border-soft: var(--gray-pale);
     --nav-bg: rgba(255,255,255,0.97);
     --shadow-soft: 0 2px 12px rgba(0,0,0,0.06);
@@ -30,20 +31,20 @@
 }
 
 :root[data-theme="dark"] {
-    --plum-pale: #251c2c;
-    --gold-pale: #2a241a;
-    --bg-page: #161419;
-    --bg-card: #211d27;
-    --bg-section-alt: #1d1822;
-    --bg-section-gold: #221c14;
-    --text-body: #cbd5e1;
-    --text-muted: #94a3b8;
-    --text-heading: #c4a3dd;
-    --text-strong: #e5e7eb;
-    --border-soft: #322b3a;
-    --nav-bg: rgba(33,29,39,0.97);
-    --shadow-soft: 0 2px 12px rgba(0,0,0,0.35);
-    --shadow-hover: 0 4px 20px rgba(0,0,0,0.45);
+    --guld-pale: #211c10;
+    --bg-page: #121212;
+    --bg-card: #1d1d1d;
+    --bg-section-alt: #181715;
+    --bg-section-gold: #211c10;
+    --text-body: #d4d4d4;
+    --text-muted: #9a9a9a;
+    --text-heading: #F0D469;
+    --text-strong: #f0f0f0;
+    --accent: var(--guld);
+    --border-soft: #2e2e2e;
+    --nav-bg: rgba(18,18,18,0.97);
+    --shadow-soft: 0 2px 12px rgba(0,0,0,0.45);
+    --shadow-hover: 0 4px 20px rgba(0,0,0,0.55);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -81,22 +82,25 @@ nav#navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    line-height: 1;
+    line-height: 1.1;
     cursor: pointer;
     text-decoration: none;
 }
 .logo-top {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    /* Tung sans i fetstil – som "BibelBecca" i kanalbannern */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 20px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: var(--text-strong);
 }
 .logo-bottom {
-    font-family: 'Caveat', cursive;
-    font-size: 18px;
-    color: var(--text-muted);
-    margin-top: 0;
+    /* Guldkursiv serif – som taglinen i kanalbannern */
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent);
+    margin-top: 1px;
 }
 
 .nav-links {
@@ -123,7 +127,7 @@ nav#navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
     bottom: -4px;
     left: 0; right: 0;
     height: 2px;
-    background: var(--gold);
+    background: var(--accent);
     border-radius: 1px;
 }
 
@@ -144,7 +148,9 @@ nav#navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 /* === PAGE WRAPPER === */
 main { padding-top: 72px; }
 
-/* === HERO === */
+/* === HERO ===
+   Svart "läder"-känsla med guldskimmer – som kanalbannern.
+   Samma i ljust och mörkt läge (varumärkesyta). */
 .hero {
     min-height: 80vh;
     display: flex;
@@ -152,9 +158,10 @@ main { padding-top: 72px; }
     justify-content: center;
     text-align: center;
     background:
-        radial-gradient(ellipse at 20% 20%, rgba(221,180,106,0.25) 0%, rgba(221,180,106,0) 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(156,119,180,0.35) 0%, rgba(156,119,180,0) 55%),
-        linear-gradient(160deg, var(--plum-dark) 0%, #5d3a73 55%, #3a2348 100%);
+        radial-gradient(ellipse at 25% 15%, rgba(229,192,75,0.14) 0%, rgba(229,192,75,0) 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(229,192,75,0.10) 0%, rgba(229,192,75,0) 55%),
+        radial-gradient(ellipse at 60% 40%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(160deg, #1d1d1d 0%, #121212 55%, #0d0d0d 100%);
     background-size: cover;
     background-position: center;
     color: var(--white);
@@ -166,52 +173,63 @@ main { padding-top: 72px; }
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 700px;
+    max-width: 760px;
 }
 .hero-badge {
     display: inline-block;
     padding: 6px 16px;
-    border: 1px solid rgba(255,255,255,0.35);
+    border: 1px solid rgba(229,192,75,0.5);
     border-radius: 999px;
     font-size: 14px;
     letter-spacing: 1px;
     margin-bottom: 20px;
-    background: rgba(255,255,255,0.08);
+    color: var(--guld-ljus);
+    background: rgba(229,192,75,0.08);
 }
 .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 16px;
-    line-height: 1.15;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.75rem, 7vw, 4.5rem);
+    margin-bottom: 12px;
+    line-height: 1.1;
+    color: var(--white);
 }
 .hero p {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    opacity: 0.9;
-    margin-bottom: 32px;
-    font-weight: 300;
+    /* Taglinen i guld-kursiv, precis som i bannern */
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    color: var(--guld-ljus);
+    margin-bottom: 36px;
 }
 .hero-btn {
     display: inline-block;
     padding: 14px 36px;
-    background: var(--gold);
-    color: var(--white);
+    background: var(--guld);
+    color: var(--svart);
     text-decoration: none;
+    border: 1px solid var(--guld);
     border-radius: 6px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 16px;
     transition: background 0.2s, transform 0.2s;
     cursor: pointer;
     margin: 4px;
 }
-.hero-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+.hero-btn:hover { background: var(--guld-ljus); border-color: var(--guld-ljus); transform: translateY(-1px); }
 .hero-btn--ghost {
     background: transparent;
     border: 1px solid rgba(255,255,255,0.5);
+    color: var(--white);
 }
-.hero-btn--ghost:hover { background: rgba(255,255,255,0.12); }
-.hero-btn--plum { background: var(--plum-mid); }
-.hero-btn--plum:hover { background: var(--plum-dark); }
+.hero-btn--ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.5); }
+/* Svart ruta med guldram – som "Gift"-skylten i podden */
+.hero-btn--alt {
+    background: var(--svart);
+    color: var(--white);
+    border: 1px solid var(--guld);
+}
+.hero-btn--alt:hover { background: var(--guld); color: var(--svart); }
 
 /* === SECTIONS === */
 .section {
@@ -227,8 +245,9 @@ main { padding-top: 72px; }
     margin-bottom: 48px;
 }
 .section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
     color: var(--text-heading);
     margin-bottom: 12px;
 }
@@ -243,22 +262,32 @@ main { padding-top: 72px; }
 .subpage-hero {
     padding: 120px 24px 60px;
     background:
-        radial-gradient(ellipse at 85% 15%, rgba(221,180,106,0.25) 0%, rgba(221,180,106,0) 55%),
-        linear-gradient(135deg, var(--plum-dark), var(--plum-mid));
+        radial-gradient(ellipse at 80% 20%, rgba(229,192,75,0.16) 0%, rgba(229,192,75,0) 55%),
+        linear-gradient(150deg, #1d1d1d 0%, #111111 100%);
     color: white;
     text-align: center;
 }
-.subpage-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); }
-.subpage-hero p { opacity: 0.85; margin-top: 12px; font-size: 18px; }
+.subpage-hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+.subpage-hero p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--guld-ljus);
+    margin-top: 12px;
+    font-size: 19px;
+}
 
 .subpage-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 60px 24px;
 }
-.subpage-content h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-heading); margin: 32px 0 16px; }
+.subpage-content h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 24px; color: var(--text-heading); margin: 32px 0 16px; }
 .subpage-content p { color: var(--text-body); margin-bottom: 16px; line-height: 1.8; }
-.subpage-content a { color: var(--text-heading); font-weight: 500; }
+.subpage-content a { color: var(--accent); font-weight: 500; }
 
 /* === VIDEO LIST ===
    3 per rad på desktop, 2 på platta, 1 på mobil — så att videorna
@@ -291,8 +320,9 @@ main { padding-top: 72px; }
 .video-block h3 {
     margin: 0;
     padding: 14px 18px 4px;
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
     color: var(--text-heading);
 }
 .video-embed {
@@ -313,7 +343,7 @@ main { padding-top: 72px; }
     margin: 0;
     padding: 0 18px;
     font-size: 13px;
-    color: var(--gold);
+    color: var(--accent);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -340,7 +370,7 @@ main { padding-top: 72px; }
     .shorts-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .video-embed--staende { aspect-ratio: 9 / 16; }
-.shorts-list .video-block h3 { font-size: 15px; padding: 12px 14px 4px; }
+.shorts-list .video-block h3 { font-size: 14px; padding: 12px 14px 4px; }
 .shorts-list .video-date { padding: 0 14px; font-size: 12px; }
 .shorts-list .video-block h3 + .video-date { padding-bottom: 12px; }
 .shorts-list .video-block .video-description { padding: 6px 14px 14px; font-size: 13px; }
@@ -378,14 +408,13 @@ main { padding-top: 72px; }
 .sponsor-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
-    border-color: var(--plum-light);
+    border-color: var(--guld);
 }
 .sponsor-card--funded { opacity: 0.85; }
-.sponsor-card--funded:hover { border-color: var(--gold-light); }
 .sponsor-icon {
     width: 72px; height: 72px;
     border-radius: 50%;
-    background: var(--bg-section-alt);
+    background: var(--bg-section-gold);
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 16px;
     font-size: 32px;
@@ -407,24 +436,26 @@ main { padding-top: 72px; }
     letter-spacing: 0.5px;
     margin-bottom: 12px;
 }
-.sponsor-status.is-wanted { background: var(--bg-section-gold); color: var(--gold); border: 1px solid var(--gold-light); }
-.sponsor-status.is-funded { background: var(--bg-section-alt); color: var(--text-heading); border: 1px solid var(--plum-light); }
-.sponsor-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 8px; color: var(--text-heading); }
+.sponsor-status.is-wanted { background: var(--guld); color: var(--svart); border: 1px solid var(--guld); }
+.sponsor-status.is-funded { background: transparent; color: var(--text-muted); border: 1px solid var(--border-soft); }
+.sponsor-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 8px; color: var(--text-heading); }
 .sponsor-card p { color: var(--text-body); font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
-.sponsor-card p a { color: var(--text-heading); }
+.sponsor-card p a { color: var(--accent); }
+/* Svart knapp med guldram – "Gift"-motivet från podden */
 .sponsor-cta {
     margin-top: auto;
     display: inline-block;
     padding: 10px 20px;
-    background: var(--plum-mid);
+    background: var(--svart);
     color: #fff;
+    border: 1px solid var(--guld);
     border-radius: 8px;
     text-decoration: none;
     font-weight: 500;
     font-size: 14px;
-    transition: background 0.2s, transform 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
 }
-.sponsor-cta:hover { background: var(--plum-dark); transform: translateY(-1px); }
+.sponsor-cta:hover { background: var(--guld); color: var(--svart); transform: translateY(-1px); }
 
 /* === ABOUT PAGE === */
 .about-section {
@@ -437,14 +468,16 @@ main { padding-top: 72px; }
 .about-section:nth-child(even) .about-text { order: -1; }
 .about-img {
     border-radius: 16px;
-    background: linear-gradient(135deg, var(--bg-section-alt), var(--bg-section-gold));
+    background:
+        radial-gradient(ellipse at 70% 30%, rgba(229,192,75,0.25) 0%, rgba(229,192,75,0) 60%),
+        linear-gradient(135deg, var(--bg-section-alt), var(--bg-section-gold));
     height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 64px;
 }
-.about-text h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--text-heading); margin-bottom: 16px; }
+.about-text h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 26px; color: var(--text-heading); margin-bottom: 16px; }
 .about-text p { color: var(--text-body); line-height: 1.8; margin-bottom: 12px; }
 
 /* === CONTACT === */
@@ -454,7 +487,7 @@ main { padding-top: 72px; }
     gap: 48px;
     align-items: start;
 }
-.contact-info h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text-heading); margin-bottom: 16px; }
+.contact-info h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; color: var(--text-heading); margin-bottom: 16px; }
 .contact-info p { color: var(--text-body); margin-bottom: 12px; line-height: 1.7; }
 .contact-detail {
     display: flex;
@@ -463,11 +496,11 @@ main { padding-top: 72px; }
     margin-bottom: 16px;
     color: var(--text-body);
 }
-.contact-detail a { color: var(--text-heading); text-decoration: none; }
+.contact-detail a { color: var(--accent); text-decoration: none; }
 .contact-detail a:hover { text-decoration: underline; }
 .contact-detail .icon {
     width: 40px; height: 40px;
-    background: var(--bg-section-alt);
+    background: var(--bg-section-gold);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
@@ -492,31 +525,32 @@ main { padding-top: 72px; }
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: var(--plum-mid);
-    box-shadow: 0 0 0 3px rgba(116,72,155,0.12);
+    border-color: var(--guld);
+    box-shadow: 0 0 0 3px rgba(229,192,75,0.18);
 }
 .form-group textarea { resize: vertical; min-height: 120px; }
 
 .submit-btn {
     display: inline-block;
     padding: 14px 36px;
-    background: var(--plum-dark);
+    background: var(--svart);
     color: var(--white);
-    border: none;
+    border: 1px solid var(--guld);
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
     font-family: 'Inter', sans-serif;
 }
-.submit-btn:hover { background: var(--plum-mid); }
+.submit-btn:hover { background: var(--guld); color: var(--svart); }
 
 /* === FOOTER === */
 footer {
-    background: var(--plum-dark);
+    background: #121212;
     color: rgba(255,255,255,0.8);
     padding: 60px 24px 30px;
+    border-top: 1px solid rgba(229,192,75,0.25);
 }
 .footer-inner {
     max-width: 1200px;
@@ -525,9 +559,9 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
 }
-footer h4 { color: var(--white); font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 16px; }
+footer h4 { color: var(--guld); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 16px; }
 footer p, footer a { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); text-decoration: none; }
-footer a:hover { color: var(--white); }
+footer a:hover { color: var(--guld-ljus); }
 .footer-bottom {
     max-width: 1200px;
     margin: 40px auto 0;
@@ -557,6 +591,7 @@ footer a:hover { color: var(--white); }
     .about-section { grid-template-columns: 1fr; }
     .about-section:nth-child(even) .about-text { order: 0; }
     .contact-wrapper { grid-template-columns: 1fr; }
+    .logo-bottom { display: none; } /* taglinen får inte plats bredvid hamburgermenyn */
 }
 
 /* === ANIMATION === */
@@ -587,7 +622,7 @@ footer a:hover { color: var(--white); }
     color: var(--text-body);
     transition: border-color 0.2s;
 }
-.theme-toggle:hover { border-color: var(--plum-mid); }
+.theme-toggle:hover { border-color: var(--guld); }
 [data-theme="dark"] .theme-toggle { background: var(--bg-card); }
 
 .lang-switch { position: relative; }
@@ -605,7 +640,7 @@ footer a:hover { color: var(--white); }
     background: var(--bg-card);
 }
 .lang-switch summary::-webkit-details-marker { display: none; }
-.lang-switch[open] summary { border-color: var(--plum-mid); }
+.lang-switch[open] summary { border-color: var(--guld); }
 .lang-menu {
     position: absolute;
     right: 0;
@@ -628,7 +663,7 @@ footer a:hover { color: var(--white); }
     color: var(--text-body);
     font-size: 14px;
 }
-.lang-menu a:hover { background: var(--bg-section-alt); color: var(--text-heading); }
+.lang-menu a:hover { background: var(--bg-section-gold); color: var(--text-heading); }
 .lang-menu a.active { color: var(--text-heading); font-weight: 600; }
 .lang-flag {
     width: 22px;

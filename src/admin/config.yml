@@ -38,8 +38,9 @@ collections:
             widget: object
             i18n: true
             fields:
+              - { name: badge, label: Liten text ovanför rubriken, widget: string, required: false, i18n: true }
               - { name: rubrik, label: Rubrik, widget: string, i18n: true }
-              - { name: undertitel, label: Undertitel, widget: text, i18n: true }
+              - { name: undertitel, label: Undertitel (tagline i guld), widget: text, i18n: true }
               - { name: knapptext, label: Knapptext, widget: string, i18n: true }
               - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
           - name: senaste
