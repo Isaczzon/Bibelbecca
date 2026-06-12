@@ -9,6 +9,16 @@
     "rubrik": "Det här behövs just nu",
     "undertitel": "Aktuella sponsorbehov – stort som smått, allt gör skillnad"
   },
+  "tack": {
+    "rubrik": "Som tack: välj en virkad bibelsak",
+    "text": "Alla som sponsrar får välja en av Beccas handvirkade bibelsaker som tack – en liten hälsning med stort hjärta. Skriv i meddelandet vilken du önskar!",
+    "saker": [
+      { "namn": "Bibelband", "ikon": "🔖", "beskrivning": "Handvirkat bokmärkesband till din bibel" },
+      { "namn": "Ett lamm", "ikon": "🐑", "beskrivning": "Litet virkat lamm – Guds lamm som symbol" },
+      { "namn": "En åsna", "ikon": "🫏", "beskrivning": "Virkad åsna – som den Jesus red på" },
+      { "namn": "En duva", "ikon": "🕊️", "beskrivning": "Virkad duva – fredens och Andens symbol" }
+    ]
+  },
   "ovrigt": {
     "rubrik": "Andra sätt att stötta",
     "text": "Allt stöd är inte pengar! Du stöttar också genom att prenumerera på kanalen, gilla och dela videorna, lämna en recension på podden – och framför allt genom att be för arbetet."

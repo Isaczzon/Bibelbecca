@@ -148,6 +148,22 @@ collections:
             fields:
               - { name: rubrik, label: Rubrik, widget: string, i18n: true }
               - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: tack
+            label: Tack-gåvor (virkade bibelsaker)
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: text, label: Text, widget: text, i18n: true }
+              - name: saker
+                label: Virkade saker att välja på
+                widget: list
+                i18n: true
+                fields:
+                  - { name: namn, label: Namn, widget: string }
+                  - { name: ikon, label: Ikon (emoji), widget: string, required: false, hint: "Visas om ingen bild laddats upp, t.ex. 🐑 🔖 🕊️" }
+                  - { name: bild, label: Bild (gärna foto på den virkade saken), widget: image, required: false }
+                  - { name: beskrivning, label: Kort beskrivning, widget: string, required: false }
           - name: ovrigt
             label: Andra sätt att stötta
             widget: object

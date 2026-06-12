@@ -56,15 +56,39 @@ eleventyComputed:
     </div>
 </section>
 
-<section class="section">
-    <div class="subpage-content fade-in" style="padding-top:0; padding-bottom:0;">
-        <h2 style="margin-top:0;">{{ sidan.ovrigt.rubrik }}</h2>
-        <p>{{ sidan.ovrigt.text }}</p>
+{% if sidan.tack.saker.length %}
+<section class="section" id="tack">
+    <div class="section-header fade-in">
+        <h2>{{ sidan.tack.rubrik }}</h2>
+        <p>{{ sidan.tack.text }}</p>
+    </div>
+    <div class="tack-grid">
+        {% for sak in sidan.tack.saker %}
+        <div class="tack-card fade-in">
+            {% if sak.bild %}
+            <div class="tack-img" style="background-image: url('{{ sak.bild | url }}');"></div>
+            {% else %}
+            <div class="tack-icon">{{ sak.ikon or '🧶' }}</div>
+            {% endif %}
+            <h3>{{ sak.namn }}</h3>
+            {% if sak.beskrivning %}<p>{{ sak.beskrivning }}</p>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<section class="section-alt">
+    <div class="section" style="padding-top:64px; padding-bottom:64px;">
+        <div class="subpage-content fade-in" style="padding-top:0; padding-bottom:0;">
+            <h2 style="margin-top:0;">{{ sidan.ovrigt.rubrik }}</h2>
+            <p>{{ sidan.ovrigt.text }}</p>
+        </div>
     </div>
 </section>
 
 {% if sidan.cta.rubrik %}
-<section class="section" style="text-align:center; padding-top:0;">
+<section class="section" style="text-align:center;">
     <div class="fade-in">
         <h2 style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--text-heading); margin-bottom:16px;">{{ sidan.cta.rubrik }}</h2>
         <p style="color:var(--text-muted); max-width:500px; margin:0 auto 24px;">{{ sidan.cta.text }}</p>

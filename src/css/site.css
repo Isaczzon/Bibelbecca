@@ -457,6 +457,43 @@ main { padding-top: 72px; }
 }
 .sponsor-cta:hover { background: var(--guld); color: var(--svart); transform: translateY(-1px); }
 
+/* === TACK-GÅVOR (virkade bibelsaker på sponsorsidan) === */
+.tack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.tack-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 28px 20px 22px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px dashed var(--guld);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.tack-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.tack-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--bg-section-gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+    font-size: 30px;
+}
+.tack-img {
+    width: 100%;
+    height: 140px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 14px;
+}
+.tack-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; color: var(--text-heading); margin-bottom: 6px; }
+.tack-card p { color: var(--text-muted); font-size: 13px; line-height: 1.5; margin: 0; }
+
 /* === ABOUT PAGE === */
 .about-section {
     display: grid;

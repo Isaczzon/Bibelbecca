@@ -9,7 +9,7 @@ Sajten har samma struktur som Elimkyrkan Mantorps webbplats: mörkt/ljust läge,
 - **Hem** – hero, senaste videor/poddavsnitt, om-teaser och sponsor-CTA
 - **Om** – om Becca, podden och vad kanalen står för
 - **Videor & podcast** – allt innehåll uppdelat i *Videor*, *Shorts*, *Podcast* och *Lives*
-- **Sponsra** – aktuella sponsorbehov (mikrofoner, kameror m.m.) som Becca själv lägger upp i CMS:et
+- **Sponsra** – aktuella sponsorbehov (mikrofoner, kameror m.m.) som Becca själv lägger upp i CMS:et, samt virkade tack-gåvor (bibelband, lamm, åsna …) som sponsorer får välja bland
 - **Kontakt** – e-post, sociala länkar och Formspree-formulär
 
 ## Så hänger det ihop
