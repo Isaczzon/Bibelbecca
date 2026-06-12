@@ -8,7 +8,7 @@ Sajten har samma struktur som Elimkyrkan Mantorps webbplats: mörkt/ljust läge,
 
 - **Hem** – hero, senaste videor/poddavsnitt, om-teaser och sponsor-CTA
 - **Om** – om Becca, podden och vad kanalen står för
-- **Videor & podcast** – allt innehåll uppdelat i *Videor*, *Podcast* och *Lives*
+- **Videor & podcast** – allt innehåll uppdelat i *Videor*, *Shorts*, *Podcast* och *Lives*
 - **Sponsra** – aktuella sponsorbehov (mikrofoner, kameror m.m.) som Becca själv lägger upp i CMS:et
 - **Kontakt** – e-post, sociala länkar och Formspree-formulär
 
@@ -19,7 +19,7 @@ Becca → /admin/ (Sveltia CMS) → commit till GitHub → GitHub Actions bygger
 ```
 
 - **Sidtexter** ligger i `src/_data/pages/{språk}/…` och `src/_data/sajt/{språk}.json`
-- **Videor, podcast & lives** ligger i `src/media/{språk}/…` – en fil per inslag med typ (Video/Podcast/Live), YouTube-länk och datum. Nyaste visas först; de tre senaste visas även på startsidan.
+- **Videor, podcast & lives** ligger i `src/media/{språk}/…` – en fil per inslag med typ (Video/Short/Podcast/Live), YouTube-länk och datum. Nyaste visas först; de tre senaste (undantaget shorts) visas även på startsidan. Shorts visas i stående format.
 - **Sponsorbehov** ligger i `src/sponsorbehov/{språk}/…` – en fil per behov med status *Önskas* eller *Finansierad*.
 - **Översättningar av fasta UI-texter** (knappar, etiketter, formulär) ligger i `src/_data/t.json`.
 - **Mallar/design**: `src/_includes/`, `src/css/site.css` (inkl. mörkt läge), `src/js/site.js`.

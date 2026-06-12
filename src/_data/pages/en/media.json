@@ -1,12 +1,16 @@
 {
   "navnamn": "Videos & podcast",
   "hero": {
-    "rubrik": "Videos, podcast & lives",
+    "rubrik": "Videos, shorts, podcast & lives",
     "undertitel": "All content from BibelBecca – gathered in one place"
   },
   "videor": {
     "rubrik": "Videos",
     "undertitel": "Bible questions, teaching and common misconceptions"
+  },
+  "shorts": {
+    "rubrik": "Shorts",
+    "undertitel": "Short clips with Bible questions and thoughts – perfect to share"
   },
   "podcast": {
     "rubrik": "Podcast",

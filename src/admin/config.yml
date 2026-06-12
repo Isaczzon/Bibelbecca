@@ -103,6 +103,13 @@ collections:
             fields:
               - { name: rubrik, label: Rubrik, widget: string, i18n: true }
               - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: shorts
+            label: Sektion Shorts
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
           - name: podcast
             label: Sektion Podcast
             widget: object
@@ -192,6 +199,7 @@ collections:
         hint: "Styr vilken sektion inslaget visas i på sidan Videor & podcast."
         options:
           - { label: "Video", value: "Video" }
+          - { label: "Short (stående kortvideo)", value: "Short" }
           - { label: "Podcastavsnitt", value: "Podcast" }
           - { label: "Live", value: "Live" }
       - { name: datum, label: Publiceringsdatum, widget: datetime, format: "YYYY-MM-DD", time_format: false, i18n: duplicate }
@@ -240,6 +248,7 @@ collections:
           - { name: epost, label: E-post, widget: string, i18n: duplicate }
           - { name: youtube, label: YouTube-länk, widget: string, i18n: duplicate }
           - { name: instagram, label: Instagram-länk, widget: string, required: false, i18n: duplicate }
+          - { name: tiktok, label: TikTok-länk, widget: string, required: false, i18n: duplicate }
           - { name: spotify, label: Spotify-länk, widget: string, required: false, i18n: duplicate, hint: "Lämna tom så döljs Spotify-knapparna" }
           - { name: copyright, label: Copyright-text, widget: string, i18n: true }
           - { name: formspree_id, label: Formspree-ID, widget: string, hint: "ID:t från formspree.io för kontaktformuläret", i18n: duplicate }

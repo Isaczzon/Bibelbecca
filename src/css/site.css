@@ -327,6 +327,24 @@ main { padding-top: 72px; }
 .video-block h3 + .video-date { padding-bottom: 12px; }
 .video-date + .video-description { padding-top: 6px; }
 
+/* === SHORTS (stående 9:16-format, fler per rad) === */
+.shorts-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+@media (max-width: 900px) {
+    .shorts-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+    .shorts-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.video-embed--staende { aspect-ratio: 9 / 16; }
+.shorts-list .video-block h3 { font-size: 15px; padding: 12px 14px 4px; }
+.shorts-list .video-date { padding: 0 14px; font-size: 12px; }
+.shorts-list .video-block h3 + .video-date { padding-bottom: 12px; }
+.shorts-list .video-block .video-description { padding: 6px 14px 14px; font-size: 13px; }
+
 /* === EMPTY STATE (media-sektioner utan inlägg) === */
 .media-empty {
     text-align: center;

@@ -19,6 +19,10 @@ export default function (eleventyConfig) {
     (arr || []).filter((p) => String(p.data.typ || "").toLowerCase() === String(typ).toLowerCase())
   );
 
+  eleventyConfig.addFilter("utanTyp", (arr, typ) =>
+    (arr || []).filter((p) => String(p.data.typ || "").toLowerCase() !== String(typ).toLowerCase())
+  );
+
   // Nyaste först; poster utan datum hamnar sist
   eleventyConfig.addFilter("nyastForst", (arr) =>
     [...(arr || [])].sort((a, b) => {

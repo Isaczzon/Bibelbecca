@@ -15,17 +15,17 @@ eleventyComputed:
 {%- set sajten = sajt[kod] -%}
 {%- set allaMedia = collections.media | medLang(kod) | nyastForst -%}
 
-{% macro mediaSektion(rubrik, undertitel, inslag, ankare) %}
+{% macro mediaSektion(rubrik, undertitel, inslag, ankare, staende=false) %}
 <div class="section" id="{{ ankare }}">
     <div class="section-header fade-in">
         <h2>{{ rubrik }}</h2>
         <p>{{ undertitel }}</p>
     </div>
     {% if inslag.length %}
-    <div class="video-list">
+    <div class="{% if staende %}shorts-list{% else %}video-list{% endif %}">
         {% for post in inslag %}
         <div class="video-block fade-in">
-            <div class="video-embed">
+            <div class="video-embed{% if staende %} video-embed--staende{% endif %}">
                 <iframe src="https://www.youtube-nocookie.com/embed/{{ post.data.url | youtubeId }}" title="{{ post.data.titel }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <h3>{{ post.data.titel }}</h3>
@@ -51,12 +51,16 @@ eleventyComputed:
 {{ mediaSektion(sidan.videor.rubrik, sidan.videor.undertitel, allaMedia | medTyp('Video'), 'videor') }}
 
 <section class="section-alt">
-    {{ mediaSektion(sidan.podcast.rubrik, sidan.podcast.undertitel, allaMedia | medTyp('Podcast'), 'podcast') }}
-    {% if sajten.spotify %}
-    <p style="text-align:center; padding-bottom:48px; margin-top:-32px;">
-        <a class="hero-btn hero-btn--plum" href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 {{ ui.lyssnaSpotify }}</a>
-    </p>
-    {% endif %}
+    {{ mediaSektion(sidan.shorts.rubrik, sidan.shorts.undertitel, allaMedia | medTyp('Short'), 'shorts', staende=true) }}
 </section>
 
-{{ mediaSektion(sidan.lives.rubrik, sidan.lives.undertitel, allaMedia | medTyp('Live'), 'lives') }}
+{{ mediaSektion(sidan.podcast.rubrik, sidan.podcast.undertitel, allaMedia | medTyp('Podcast'), 'podcast') }}
+{% if sajten.spotify %}
+<p style="text-align:center; padding-bottom:48px; margin-top:-48px;">
+    <a class="hero-btn hero-btn--plum" href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 {{ ui.lyssnaSpotify }}</a>
+</p>
+{% endif %}
+
+<section class="section-alt">
+    {{ mediaSektion(sidan.lives.rubrik, sidan.lives.undertitel, allaMedia | medTyp('Live'), 'lives') }}
+</section>
