@@ -39,7 +39,7 @@ eleventyComputed:
         <div class="video-block fade-in">
             <div class="video-embed{% if staende %} video-embed--staende{% endif %}">
                 <button type="button" class="video-facade" data-yt="{{ ytid }}" aria-label="{{ ui.spela }}: {{ post.data.titel }}">
-                    <img src="https://i.ytimg.com/vi/{{ ytid }}/{% if staende %}oardefault{% else %}hqdefault{% endif %}.jpg" alt="" loading="lazy"{% if staende %} onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg';"{% endif %}>
+                    <img src="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt="" loading="lazy">
                     <span class="video-play" aria-hidden="true">▶</span>
                 </button>
             </div>
