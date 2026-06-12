@@ -43,29 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Räknarna på kategorikorten tickar upp från noll när kortet blir synligt
+    // Räknare som tickar upp från noll när de blir synliga: kategorikortens
+    // antal och hero-sektionens följarsiffror. HTML:en innehåller slutvärdet
+    // (så att siffran stämmer även utan JS/med reducerad rörelse) och
+    // animationen skriver bara om texten på vägen dit.
     const lugntLage = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!lugntLage) {
+        const sprak = document.documentElement.lang || 'sv';
         const raknare = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
                 raknare.unobserve(entry.target);
                 const el = entry.target;
-                const m = el.textContent.match(/\d+/);
-                if (!m) return;
-                const mal = parseInt(m[0], 10);
-                const suffix = el.textContent.slice(m.index + m[0].length);
+                let mal, format;
+                if (el.dataset.mal) {
+                    // Följarsiffra: råvärdet ligger i data-mal, visas lokaliserat
+                    mal = parseInt(el.dataset.mal, 10);
+                    format = (v) => v.toLocaleString(sprak);
+                } else {
+                    // Kategorikort: "457 inslag" – behåll suffixet
+                    const m = el.textContent.match(/\d+/);
+                    if (!m) return;
+                    mal = parseInt(m[0], 10);
+                    const suffix = el.textContent.slice(m.index + m[0].length);
+                    format = (v) => v + suffix;
+                }
                 const start = performance.now();
-                const tid = 900;
+                const tid = 1100;
                 const tick = (nu) => {
                     const t = Math.min((nu - start) / tid, 1);
-                    el.textContent = Math.round(mal * (1 - Math.pow(1 - t, 3))) + suffix;
+                    el.textContent = format(Math.round(mal * (1 - Math.pow(1 - t, 3))));
                     if (t < 1) requestAnimationFrame(tick);
                 };
                 requestAnimationFrame(tick);
             });
         }, { threshold: 0.4 });
-        document.querySelectorAll('.kat-antal').forEach((el) => raknare.observe(el));
+        document.querySelectorAll('.kat-antal, .stat-antal').forEach((el) => raknare.observe(el));
     }
 
     // Klicka-för-att-spela: miniatyrbilden byts mot YouTube-spelaren först

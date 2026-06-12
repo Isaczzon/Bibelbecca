@@ -201,6 +201,34 @@ main { padding-top: 72px; }
 .hero p { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.3s backwards; }
 .hero-content .hero-btn:nth-of-type(1) { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.45s backwards; }
 .hero-content .hero-btn:nth-of-type(2) { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.57s backwards; }
+
+/* Följarsiffror i heron – räknas upp från noll av site.js */
+.stats-rad {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px 48px;
+    margin-top: 44px;
+    animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.7s backwards;
+}
+.stat { text-align: center; min-width: 110px; }
+.stat-antal {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    color: var(--guld-ljus);
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+.stat-etikett {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.75);
+}
 .hero-badge {
     display: inline-block;
     padding: 6px 16px;

@@ -26,11 +26,11 @@ jobs:
         run: node scripts/hamta-nytt.mjs
       - name: Committa om något är nytt
         run: |
-          if [[ -n "$(git status --porcelain src/media)" ]]; then
+          if [[ -n "$(git status --porcelain src/media src/_data/sajt)" ]]; then
             git config user.name "bibelbecca-bot"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add src/media
-            git commit -m "Auto: nya inslag från YouTube-kanalen"
+            git add src/media src/_data/sajt
+            git commit -m "Auto: nya inslag och följarsiffror från YouTube"
             git push
           else
             echo "Inget nytt idag."

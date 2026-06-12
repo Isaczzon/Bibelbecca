@@ -44,7 +44,10 @@
     "tillbaka": "← Alla kategorier",
     "visaFler": "Visa fler",
     "foljInstagram": "Följ på Instagram",
-    "foljTiktok": "Följ på TikTok"
+    "foljTiktok": "Följ på TikTok",
+    "statPrenumeranter": "prenumeranter",
+    "statFoljare": "följare",
+    "statLyssnare": "lyssnare"
   },
   "en": {
     "sprak": "Language",
@@ -91,6 +94,9 @@
     "tillbaka": "← All categories",
     "visaFler": "Show more",
     "foljInstagram": "Follow on Instagram",
-    "foljTiktok": "Follow on TikTok"
+    "foljTiktok": "Follow on TikTok",
+    "statPrenumeranter": "subscribers",
+    "statFoljare": "followers",
+    "statLyssnare": "listeners"
   }
 }

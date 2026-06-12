@@ -52,6 +52,8 @@ export default function (eleventyConfig) {
     new Intl.DateTimeFormat(kod, { day: "numeric", month: "long", year: "numeric" }).format(new Date(d))
   );
 
+  eleventyConfig.addFilter("tal", (n, kod) => Number(n || 0).toLocaleString(kod));
+
   eleventyConfig.addFilter("youtubeId", (url) => {
     const m = String(url || "").match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
     return m ? m[1] : "";

@@ -149,3 +149,29 @@ for (const id of nya) {
 }
 
 console.log(nya.length ? `Klart – ${nya.length} nya inslag tillagda.` : "Inget nytt idag.");
+
+// --- Uppdatera YouTube-prenumerantantalet (visas som räknare på startsidan) ---
+// TikTok/Instagram/Spotify uppdateras manuellt i CMS:et – de döljer sina
+// siffror bakom inloggning/anti-bot, så de går inte att hämta pålitligt.
+try {
+  const kanal = await yt("browse", { browseId: KANAL });
+  const texter = hitta(kanal, "content").filter((v) => typeof v === "string");
+  const traff = texter.map((t) => t.match(/^([\d\s.,]+)\s*(tn|mn)?\s*prenumeranter/i)).find(Boolean);
+  if (traff) {
+    const tal = parseFloat(traff[1].replace(/\s/g, "").replace(",", "."));
+    const antal = Math.round(tal * (traff[2] === "tn" ? 1e3 : traff[2] === "mn" ? 1e6 : 1));
+    for (const sprak of ["sv", "en"]) {
+      const fil = path.join(ROT, "src", "_data", "sajt", `${sprak}.json`);
+      const data = JSON.parse(readFileSync(fil, "utf8"));
+      if (data.foljare_youtube !== antal) {
+        data.foljare_youtube = antal;
+        writeFileSync(fil, JSON.stringify(data, null, 2) + "\n");
+      }
+    }
+    console.log(`YouTube-prenumeranter: ${antal}`);
+  } else {
+    console.warn("Hittade inget prenumerantantal i kanalsvaret.");
+  }
+} catch (fel) {
+  console.warn(`Kunde inte uppdatera prenumerantantalet: ${fel.message}`);
+}
