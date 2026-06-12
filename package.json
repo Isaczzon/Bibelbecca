@@ -1,0 +1,14 @@
+{
+  "name": "bibelbecca",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "BibelBeccas webbplats – Eleventy + Sveltia CMS på GitHub Pages",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

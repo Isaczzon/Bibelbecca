@@ -1,0 +1,21 @@
+{
+  "navnamn": "Sponsor",
+  "hero": {
+    "rubrik": "Become a sponsor",
+    "undertitel": "Help the BibelBecca podcast grow – sponsor equipment that makes the content better"
+  },
+  "intro": "BibelBecca is run entirely on a non-profit basis. If you'd like to help make the podcast possible, you can sponsor specific equipment – like microphones, cameras and lighting. Below you can see what's needed right now. Get in touch via the contact page and I'll tell you more!",
+  "behov": {
+    "rubrik": "What's needed right now",
+    "undertitel": "Current sponsorship needs – big or small, everything makes a difference"
+  },
+  "ovrigt": {
+    "rubrik": "Other ways to support",
+    "text": "Not all support is money! You also help by subscribing to the channel, liking and sharing the videos, leaving a review on the podcast – and above all by praying for the work."
+  },
+  "cta": {
+    "rubrik": "Would you like to sponsor something?",
+    "text": "Write to me via the contact form and tell me what you'd like to sponsor, and I'll get back to you with details.",
+    "knapptext": "Go to the contact page"
+  }
+}

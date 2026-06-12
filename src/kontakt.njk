@@ -1,0 +1,165 @@
+---
+layout: layout.njk
+aktiv: kontakt
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}kontakt/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].kontakt.navnamn }}"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].kontakt -%}
+{%- set ui = t[kod] -%}
+{%- set sajten = sajt[kod] -%}
+
+<section class="subpage-hero"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    <div class="contact-wrapper">
+        <div class="contact-info fade-in">
+            <h3>{{ sajten.logotopp }}</h3>
+            <p>{{ ui.kontakt.intro }}</p>
+
+            {% if sidan.epost %}
+            <div class="contact-detail">
+                <div class="icon">✉️</div>
+                <div><strong>{{ ui.kontakt.epost }}</strong><br><a href="mailto:{{ sidan.epost }}">{{ sidan.epost }}</a></div>
+            </div>
+            {% endif %}
+            {% if sajten.youtube %}
+            <div class="contact-detail">
+                <div class="icon">▶</div>
+                <div><strong>YouTube</strong><br><a href="{{ sajten.youtube }}" target="_blank" rel="noopener">@bibelbecca</a></div>
+            </div>
+            {% endif %}
+            {% if sajten.instagram %}
+            <div class="contact-detail">
+                <div class="icon">📷</div>
+                <div><strong>Instagram</strong><br><a href="{{ sajten.instagram }}" target="_blank" rel="noopener">@bibelbecca</a></div>
+            </div>
+            {% endif %}
+            {% if sajten.spotify %}
+            <div class="contact-detail">
+                <div class="icon">🎧</div>
+                <div><strong>Spotify</strong><br><a href="{{ sajten.spotify }}" target="_blank" rel="noopener">BibelBecca podcast</a></div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="fade-in">
+            <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--text-heading); margin-bottom:24px;">{{ ui.kontakt.skicka }}</h3>
+            <form id="contactForm"
+                  data-formspree="{{ sajten.formspree_id }}"
+                  data-msg-success="{{ ui.kontakt.tack }}"
+                  data-msg-captcha-error="{{ ui.kontakt.felSvar }}"
+                  data-msg-send-error="{{ ui.kontakt.felSkick }}">
+                <div class="form-group">
+                    <label for="kontaktNamn">{{ ui.kontakt.namn }}</label>
+                    <input id="kontaktNamn" type="text" name="name" placeholder="{{ ui.kontakt.dittNamn }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="kontaktEpost">{{ ui.kontakt.epost }}</label>
+                    <input id="kontaktEpost" type="email" name="email" placeholder="din@epost.se" required>
+                </div>
+                <div class="form-group">
+                    <label for="kontaktAmne">{{ ui.kontakt.amne }}</label>
+                    <select id="kontaktAmne" name="subject">
+                        {% for amne in ui.kontakt.amnen %}
+                        <option>{{ amne }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kontaktMeddelande">{{ ui.kontakt.meddelande }}</label>
+                    <textarea id="kontaktMeddelande" name="message" placeholder="{{ ui.kontakt.skrivHar }}" required></textarea>
+                </div>
+
+                <div class="form-group" aria-hidden="true" style="position:absolute; left:-9999px; opacity:0;">
+                    <label>Leave this field empty</label>
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="captchaInput">{{ ui.kontakt.sakerhetsfraga }} <strong><span id="capA">?</span> + <span id="capB">?</span></strong>?</label>
+                    <input id="captchaInput" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="{{ ui.kontakt.svar }}" required>
+                    <div id="captchaError" style="color:#b00020; font-size:13px; margin-top:6px; display:none;"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">{{ ui.kontakt.knapp }}</button>
+
+                <p class="form-privacy-notice" style="margin-top:14px; font-size:13px; color:var(--text-muted);">
+                    {{ ui.kontakt.samtycke }}
+                </p>
+            </form>
+            <script>
+                (function () {
+                    const form = document.getElementById('contactForm');
+                    if (!form) return;
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+                    // Enkel mattefråga genereras hos besökaren
+                    const capA = Math.floor(Math.random() * 9) + 1;
+                    const capB = Math.floor(Math.random() * 9) + 1;
+                    document.getElementById('capA').textContent = capA;
+                    document.getElementById('capB').textContent = capB;
+
+                    form.addEventListener('submit', async function (e) {
+                        e.preventDefault();
+                        const given = (document.getElementById('captchaInput').value || '').trim();
+                        const honeypot = (form.querySelector('input[name="website"]')?.value || '').trim();
+                        const err = document.getElementById('captchaError');
+
+                        if (honeypot !== '') return; // tyst stopp för robotar
+                        if (given !== String(capA + capB)) {
+                            err.textContent = form.getAttribute('data-msg-captcha-error');
+                            err.style.display = 'block';
+                            return;
+                        }
+                        err.style.display = 'none';
+
+                        const payload = {
+                            name: (form.querySelector('input[name="name"]')?.value || '').trim(),
+                            email: (form.querySelector('input[name="email"]')?.value || '').trim(),
+                            subject: (form.querySelector('select[name="subject"]')?.value || '').trim(),
+                            message: (form.querySelector('textarea[name="message"]')?.value || '').trim(),
+                        };
+
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = '…';
+                        }
+
+                        try {
+                            const resp = await fetch('https://formspree.io/f/' + form.getAttribute('data-formspree'), {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                                body: JSON.stringify(payload),
+                            });
+                            if (resp.ok) {
+                                alert(form.getAttribute('data-msg-success'));
+                                form.reset();
+                            } else {
+                                err.textContent = form.getAttribute('data-msg-send-error');
+                                err.style.display = 'block';
+                            }
+                        } catch (ex) {
+                            err.textContent = form.getAttribute('data-msg-send-error');
+                            err.style.display = 'block';
+                        } finally {
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = originalBtnText;
+                            }
+                        }
+                    });
+                })();
+            </script>
+        </div>
+    </div>
+</section>

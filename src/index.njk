@@ -1,0 +1,80 @@
+---
+layout: layout.njk
+aktiv: hem
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}index.html"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].hem -%}
+{%- set ui = t[kod] -%}
+{%- set sajten = sajt[kod] -%}
+{%- set allaMedia = collections.media | medLang(kod) | nyastForst -%}
+
+<section class="hero"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <div class="hero-content">
+        <span class="hero-badge">📖 BibelBecca</span>
+        <h1>{{ sidan.hero.rubrik }}</h1>
+        <p>{{ sidan.hero.undertitel }}</p>
+        {% if sidan.hero.knapptext %}
+        <a class="hero-btn" href="/{{ loc.prefix }}media/">{{ sidan.hero.knapptext }}</a>
+        {% endif %}
+        {% if sajten.youtube %}
+        <a class="hero-btn hero-btn--ghost" href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ {{ ui.prenumerera }}</a>
+        {% endif %}
+    </div>
+</section>
+
+{% if allaMedia.length %}
+<section class="section">
+    <div class="section-header fade-in">
+        <h2>{{ sidan.senaste.rubrik }}</h2>
+        <p>{{ sidan.senaste.undertitel }}</p>
+    </div>
+    <div class="video-list">
+        {% for inslag in allaMedia %}{% if loop.index <= 3 %}
+        <div class="video-block fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube-nocookie.com/embed/{{ inslag.data.url | youtubeId }}" title="{{ inslag.data.titel }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <h3>{{ inslag.data.titel }}</h3>
+            {% if inslag.data.datum %}<p class="video-date">{{ inslag.data.datum | datumLokal(kod) }}</p>{% endif %}
+        </div>
+        {% endif %}{% endfor %}
+    </div>
+    <p style="text-align:center; margin-top:32px;">
+        <a class="hero-btn hero-btn--plum" href="/{{ loc.prefix }}media/">{{ ui.seAlla }} →</a>
+    </p>
+</section>
+{% endif %}
+
+<section class="section-alt">
+    <div class="section">
+        <div class="about-section fade-in" style="margin-bottom:0;">
+            <div class="about-img">👋</div>
+            <div class="about-text">
+                <h2>{{ sidan.om.rubrik }}</h2>
+                <p>{{ sidan.om.text }}</p>
+                <a class="hero-btn hero-btn--plum" href="/{{ loc.prefix }}om/" style="margin-top:8px;">{{ sidan.om.knapptext }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if sidan.cta.rubrik or sidan.cta.text %}
+<section class="section" style="text-align:center;">
+    <div class="fade-in">
+        {% if sidan.cta.rubrik %}
+        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--text-heading); margin-bottom:16px;">{{ sidan.cta.rubrik }}</h2>
+        {% endif %}
+        {% if sidan.cta.text %}
+        <p style="color:var(--text-muted); max-width:500px; margin:0 auto 24px;">{{ sidan.cta.text }}</p>
+        {% endif %}
+        {% if sidan.cta.knapptext %}
+        <a class="hero-btn hero-btn--plum" href="/{{ loc.prefix }}sponsra/">{{ sidan.cta.knapptext }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}

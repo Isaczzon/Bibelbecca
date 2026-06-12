@@ -1,0 +1,19 @@
+{
+  "navnamn": "Videor & podcast",
+  "hero": {
+    "rubrik": "Videor, podcast & lives",
+    "undertitel": "Allt innehåll från BibelBecca – samlat på ett ställe"
+  },
+  "videor": {
+    "rubrik": "Videor",
+    "undertitel": "Bibelfrågor, undervisning och vanliga missuppfattningar"
+  },
+  "podcast": {
+    "rubrik": "Podcast",
+    "undertitel": "BibelBecca-podden – längre samtal och undervisning. Finns även på Spotify."
+  },
+  "lives": {
+    "rubrik": "Lives",
+    "undertitel": "Livesändningar där du kan ställa frågor direkt"
+  }
+}

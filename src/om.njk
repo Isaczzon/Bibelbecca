@@ -1,0 +1,22 @@
+---
+layout: layout.njk
+aktiv: om
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}om/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].om.navnamn }}"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].om -%}
+
+<section class="subpage-hero"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    {{ sidan.body | safe }}
+</section>

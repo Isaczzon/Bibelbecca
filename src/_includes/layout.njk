@@ -1,0 +1,120 @@
+{%- set kod = loc.code if loc else (lang or 'sv') -%}
+{%- set lokal = locales | lokalFor(kod) -%}
+{%- set ui = t[kod] -%}
+{%- set sajten = sajt[kod] -%}
+{%- set sidor = pages[kod] -%}
+<!DOCTYPE html>
+<html lang="{{ kod }}" data-culture="{{ kod }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if titel %}{{ titel }} – {% endif %}{{ sajten.logotopp }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <meta name="theme-color" content="#4B2E5C">
+    <link rel="stylesheet" href="/css/site.css">
+    <script>
+        (function () {
+            try {
+                // 1. Sätt sparat tema före första målning (undviker blink). Nya besökare får ljust.
+                var savedTheme = localStorage.getItem('theme');
+                document.documentElement.setAttribute('data-theme', savedTheme || 'light');
+
+                // 2. Om besökaren tidigare valt ett annat språk och nu landar på
+                //    startsidan, skicka dem till sitt språks startsida. (Endast från
+                //    roten så att delade djuplänkar respekteras.)
+                var savedLang = localStorage.getItem('lang');
+                var prefixes = { en: 'en/' };
+                var root = '{{ "/" | url }}';
+                if (savedLang && prefixes[savedLang] && (location.pathname === root)) {
+                    location.replace(root + prefixes[savedLang]);
+                }
+            } catch (e) { /* localStorage saknas; kör vidare */ }
+        })();
+    </script>
+</head>
+<body>
+<nav id="navbar">
+    <div class="nav-inner">
+        <a class="logo" href="/{{ lokal.prefix }}">
+            <span class="logo-top">{{ sajten.logotopp }}</span>
+            <span class="logo-bottom">{{ sajten.logobotten }}</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/{{ lokal.prefix }}" {% if aktiv == 'hem' %}class="active"{% endif %}>{{ ui.hem }}</a></li>
+            <li><a href="/{{ lokal.prefix }}om/" {% if aktiv == 'om' %}class="active"{% endif %}>{{ sidor.om.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}media/" {% if aktiv == 'media' %}class="active"{% endif %}>{{ sidor.media.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}sponsra/" {% if aktiv == 'sponsra' %}class="active"{% endif %}>{{ sidor.sponsra.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}kontakt/" {% if aktiv == 'kontakt' %}class="active"{% endif %}>{{ sidor.kontakt.navnamn }}</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="{{ ui.vaxlaTema }}" title="{{ ui.vaxlaTema }}">🌙</button>
+
+            <details class="lang-switch">
+                <summary>
+                    <img class="lang-flag" src="https://flagcdn.com/w40/{{ lokal.flagga }}.png" alt="" loading="lazy">
+                    <span>{{ ui.sprak }}</span>
+                </summary>
+                <ul class="lang-menu">
+                    {% for l in locales %}
+                    <li>
+                        <a href="{{ page.url | bytLokal(lokal.prefix, l.prefix) }}" class="{% if l.code == kod %}active{% endif %}" hreflang="{{ l.code }}">
+                            <img class="lang-flag" src="https://flagcdn.com/w40/{{ l.flagga }}.png" alt="" loading="lazy">
+                            <span>{{ l.sprak }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </details>
+        </div>
+
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+{{ content | safe }}
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="logo" style="margin-bottom:16px;">
+                <span class="logo-top" style="color:white;">{{ sajten.logotopp }}</span>
+                <span class="logo-bottom" style="color:rgba(255,255,255,0.8);">{{ sajten.logobotten }}</span>
+            </div>
+            <p>{{ sajten.tagline | nl2br | safe }}</p>
+        </div>
+        <div>
+            <h4>{{ ui.snabblankar }}</h4>
+            <p><a href="/{{ lokal.prefix }}">{{ ui.hem }}</a></p>
+            <p><a href="/{{ lokal.prefix }}om/">{{ sidor.om.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}media/">{{ sidor.media.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}sponsra/">{{ sidor.sponsra.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}kontakt/">{{ sidor.kontakt.navnamn }}</a></p>
+        </div>
+        <div>
+            <h4>{{ ui.foljOss }}</h4>
+            {% if sajten.youtube %}<p><a href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ YouTube</a></p>{% endif %}
+            {% if sajten.instagram %}<p><a href="{{ sajten.instagram }}" target="_blank" rel="noopener">📷 Instagram</a></p>{% endif %}
+            {% if sajten.spotify %}<p><a href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 Spotify</a></p>{% endif %}
+        </div>
+        <div>
+            <h4>{{ ui.kontaktRubrik }}</h4>
+            <p><a href="mailto:{{ sajten.epost }}">{{ sajten.epost }}</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© {{ aret }} {{ sajten.logotopp }}. {{ sajten.copyright }}</p>
+    </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>

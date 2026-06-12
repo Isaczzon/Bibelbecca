@@ -1,0 +1,74 @@
+---
+layout: layout.njk
+aktiv: sponsra
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}sponsra/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].sponsra.navnamn }}"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].sponsra -%}
+{%- set ui = t[kod] -%}
+{%- set behov = collections.sponsorbehov | medLang(kod) | sorteraOrdning -%}
+
+<section class="subpage-hero"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    <div class="subpage-content fade-in" style="padding-top:0; padding-bottom:0;">
+        <p style="font-size:17px;">{{ sidan.intro }}</p>
+    </div>
+</section>
+
+<section class="section-alt">
+    <div class="section">
+        <div class="section-header fade-in">
+            <h2>{{ sidan.behov.rubrik }}</h2>
+            <p>{{ sidan.behov.undertitel }}</p>
+        </div>
+        <div class="sponsor-grid">
+            {% for post in behov %}
+            <div class="sponsor-card fade-in{% if post.data.status == 'Finansierad' %} sponsor-card--funded{% endif %}">
+                {% if post.data.bild %}
+                <div class="sponsor-img" style="background-image: url('{{ post.data.bild | url }}');"></div>
+                {% else %}
+                <div class="sponsor-icon">{{ post.data.ikon or '🎁' }}</div>
+                {% endif %}
+                <span class="sponsor-status {% if post.data.status == 'Finansierad' %}is-funded{% else %}is-wanted{% endif %}">
+                    {% if post.data.status == 'Finansierad' %}✓ {{ ui.statusFinansierad }}{% else %}{{ ui.statusOnskas }}{% endif %}
+                </span>
+                <h3>{{ post.data.titel }}</h3>
+                <p>{{ post.data.beskrivning }}</p>
+                {% if post.data.lank %}
+                <p><a href="{{ post.data.lank }}" target="_blank" rel="noopener">{{ ui.tillProdukt }} →</a></p>
+                {% endif %}
+                {% if post.data.status != 'Finansierad' %}
+                <a class="sponsor-cta" href="/{{ loc.prefix }}kontakt/">{{ ui.sponsraDetta }} →</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="subpage-content fade-in" style="padding-top:0; padding-bottom:0;">
+        <h2 style="margin-top:0;">{{ sidan.ovrigt.rubrik }}</h2>
+        <p>{{ sidan.ovrigt.text }}</p>
+    </div>
+</section>
+
+{% if sidan.cta.rubrik %}
+<section class="section" style="text-align:center; padding-top:0;">
+    <div class="fade-in">
+        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--text-heading); margin-bottom:16px;">{{ sidan.cta.rubrik }}</h2>
+        <p style="color:var(--text-muted); max-width:500px; margin:0 auto 24px;">{{ sidan.cta.text }}</p>
+        <a class="hero-btn hero-btn--plum" href="/{{ loc.prefix }}kontakt/">{{ sidan.cta.knapptext }}</a>
+    </div>
+</section>
+{% endif %}

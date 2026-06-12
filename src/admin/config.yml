@@ -1,0 +1,245 @@
+# Sveltia CMS-konfiguration för BibelBecca
+#
+# OBS! base_url måste peka på er OAuth-proxy (Cloudflare Worker) innan
+# inloggningen fungerar. Se README.md för instruktioner.
+
+backend:
+  name: github
+  repo: Isaczzon/Bibelbecca # TODO: byt till rätt ägare/repo om det skiljer sig
+  branch: main
+  base_url: https://BYT-UT-MIG.workers.dev # TODO: er sveltia-cms-auth Worker-URL
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+i18n:
+  structure: multiple_folders
+  locales: [sv, en]
+  default_locale: sv
+
+collections:
+  - name: sidor
+    label: Sidor
+    icon: web
+    i18n: true
+    files:
+      - name: hem
+        label: Startsidan
+        file: src/_data/pages/{{locale}}/hem.json
+        i18n: true
+        fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
+          - name: hero
+            label: Toppsektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: text, i18n: true }
+              - { name: knapptext, label: Knapptext, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - name: senaste
+            label: Senaste från kanalen (rubriker)
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: om
+            label: Om-sektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: text, label: Text, widget: text, i18n: true }
+              - { name: knapptext, label: Knapptext, widget: string, i18n: true }
+          - name: cta
+            label: Avslutande sektion (sponsring)
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: text, label: Text, widget: text, i18n: true }
+              - { name: knapptext, label: Knapptext, widget: string, i18n: true }
+
+      - name: om
+        label: Om
+        file: src/_data/pages/{{locale}}/om.json
+        i18n: true
+        fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
+          - name: hero
+            label: Toppsektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - { name: body, label: Innehåll (HTML), widget: markdown, i18n: true }
+
+      - name: media
+        label: Videor & podcast (sidhuvud)
+        file: src/_data/pages/{{locale}}/media.json
+        i18n: true
+        fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
+          - name: hero
+            label: Toppsektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - name: videor
+            label: Sektion Videor
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: podcast
+            label: Sektion Podcast
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: lives
+            label: Sektion Lives
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+
+      - name: sponsra
+        label: Sponsra (sidhuvud & texter)
+        file: src/_data/pages/{{locale}}/sponsra.json
+        i18n: true
+        fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
+          - name: hero
+            label: Toppsektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - { name: intro, label: Introtext, widget: text, i18n: true }
+          - name: behov
+            label: Sektion Sponsorbehov (rubriker)
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - name: ovrigt
+            label: Andra sätt att stötta
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: text, label: Text, widget: text, i18n: true }
+          - name: cta
+            label: Avslutande sektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: text, label: Text, widget: text, i18n: true }
+              - { name: knapptext, label: Knapptext, widget: string, i18n: true }
+
+      - name: kontakt
+        label: Kontakt
+        file: src/_data/pages/{{locale}}/kontakt.json
+        i18n: true
+        fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
+          - name: hero
+            label: Toppsektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - { name: epost, label: E-post, widget: string, i18n: duplicate }
+
+  - name: media_inslag
+    label: Videor, podcast & lives
+    icon: play_circle
+    folder: src/media
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: titel
+    summary: "{{typ}} – {{titel}} ({{datum}})"
+    sortable_fields: [datum, titel, typ]
+    i18n: true
+    fields:
+      - { name: titel, label: Titel, widget: string, i18n: true }
+      - name: typ
+        label: Typ
+        widget: select
+        i18n: duplicate
+        hint: "Styr vilken sektion inslaget visas i på sidan Videor & podcast."
+        options:
+          - { label: "Video", value: "Video" }
+          - { label: "Podcastavsnitt", value: "Podcast" }
+          - { label: "Live", value: "Live" }
+      - { name: datum, label: Publiceringsdatum, widget: datetime, format: "YYYY-MM-DD", time_format: false, i18n: duplicate }
+      - { name: url, label: YouTube-URL, widget: string, i18n: duplicate, hint: "Klistra in länken till videon, t.ex. https://www.youtube.com/watch?v=..." }
+      - { name: beskrivning, label: Beskrivning, widget: text, required: false, i18n: true }
+
+  - name: sponsorbehov
+    label: Sponsorbehov
+    icon: volunteer_activism
+    folder: src/sponsorbehov
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: titel
+    summary: "{{titel}} – {{status}}"
+    sortable_fields: [ordning, titel]
+    i18n: true
+    fields:
+      - { name: titel, label: Titel, widget: string, i18n: true }
+      - { name: beskrivning, label: Beskrivning, widget: text, i18n: true }
+      - { name: ikon, label: Ikon (emoji), widget: string, required: false, i18n: duplicate, hint: "T.ex. 🎙️ 📷 💡 – visas om ingen bild laddats upp" }
+      - { name: bild, label: Bild, widget: image, required: false, i18n: duplicate }
+      - name: status
+        label: Status
+        widget: select
+        i18n: duplicate
+        options:
+          - { label: "Önskas", value: "Önskas" }
+          - { label: "Finansierad", value: "Finansierad" }
+      - { name: lank, label: Länk till exempel på produkt (valfritt), widget: string, required: false, i18n: duplicate }
+      - { name: ordning, label: Ordning, widget: number, value_type: int, hint: "Lägre nummer visas först", i18n: duplicate }
+
+  - name: installningar
+    label: Inställningar
+    icon: settings
+    i18n: true
+    files:
+      - name: sajt
+        label: Webbplatsens uppgifter
+        file: src/_data/sajt/{{locale}}.json
+        i18n: true
+        fields:
+          - { name: logotopp, label: "Logotyp – övre rad", widget: string, i18n: duplicate }
+          - { name: logobotten, label: "Logotyp – nedre rad", widget: string, i18n: true }
+          - { name: tagline, label: Text i sidfoten, widget: text, i18n: true }
+          - { name: epost, label: E-post, widget: string, i18n: duplicate }
+          - { name: youtube, label: YouTube-länk, widget: string, i18n: duplicate }
+          - { name: instagram, label: Instagram-länk, widget: string, required: false, i18n: duplicate }
+          - { name: spotify, label: Spotify-länk, widget: string, required: false, i18n: duplicate, hint: "Lämna tom så döljs Spotify-knapparna" }
+          - { name: copyright, label: Copyright-text, widget: string, i18n: true }
+          - { name: formspree_id, label: Formspree-ID, widget: string, hint: "ID:t från formspree.io för kontaktformuläret", i18n: duplicate }

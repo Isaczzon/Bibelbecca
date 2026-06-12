@@ -1,0 +1,62 @@
+---
+layout: layout.njk
+aktiv: media
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}media/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].media.navnamn }}"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].media -%}
+{%- set ui = t[kod] -%}
+{%- set sajten = sajt[kod] -%}
+{%- set allaMedia = collections.media | medLang(kod) | nyastForst -%}
+
+{% macro mediaSektion(rubrik, undertitel, inslag, ankare) %}
+<div class="section" id="{{ ankare }}">
+    <div class="section-header fade-in">
+        <h2>{{ rubrik }}</h2>
+        <p>{{ undertitel }}</p>
+    </div>
+    {% if inslag.length %}
+    <div class="video-list">
+        {% for post in inslag %}
+        <div class="video-block fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube-nocookie.com/embed/{{ post.data.url | youtubeId }}" title="{{ post.data.titel }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <h3>{{ post.data.titel }}</h3>
+            {% if post.data.datum %}<p class="video-date">{{ post.data.datum | datumLokal(kod) }}</p>{% endif %}
+            {% if post.data.beskrivning %}<p class="video-description">{{ post.data.beskrivning }}</p>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="media-empty fade-in">
+        <p>{{ ui.mediaTomt }}</p>
+        {% if sajten.youtube %}<a class="hero-btn hero-btn--plum" href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ {{ ui.prenumerera }}</a>{% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+<section class="subpage-hero"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
+</section>
+
+{{ mediaSektion(sidan.videor.rubrik, sidan.videor.undertitel, allaMedia | medTyp('Video'), 'videor') }}
+
+<section class="section-alt">
+    {{ mediaSektion(sidan.podcast.rubrik, sidan.podcast.undertitel, allaMedia | medTyp('Podcast'), 'podcast') }}
+    {% if sajten.spotify %}
+    <p style="text-align:center; padding-bottom:48px; margin-top:-32px;">
+        <a class="hero-btn hero-btn--plum" href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 {{ ui.lyssnaSpotify }}</a>
+    </p>
+    {% endif %}
+</section>
+
+{{ mediaSektion(sidan.lives.rubrik, sidan.lives.undertitel, allaMedia | medTyp('Live'), 'lives') }}

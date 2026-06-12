@@ -1,0 +1,22 @@
+{
+  "navnamn": "Home",
+  "hero": {
+    "rubrik": "Truly get to know the Bible",
+    "undertitel": "Bible teaching, podcast and honest conversations about faith – with Becca. New videos every week on YouTube.",
+    "knapptext": "Explore videos & podcast"
+  },
+  "senaste": {
+    "rubrik": "Latest from the channel",
+    "undertitel": "Fresh videos and podcast episodes – straight from BibelBecca's YouTube channel"
+  },
+  "om": {
+    "rubrik": "Hi, I'm Becca!",
+    "text": "I love the Bible and want to help more people discover it. On my channel I answer Bible questions, clear up common misconceptions and talk about faith on the BibelBecca podcast.",
+    "knapptext": "More about me →"
+  },
+  "cta": {
+    "rubrik": "Want to help make the podcast possible?",
+    "text": "BibelBecca is run on a non-profit basis. By sponsoring equipment – like microphones, cameras and lighting – you help the content reach further.",
+    "knapptext": "Become a sponsor"
+  }
+}

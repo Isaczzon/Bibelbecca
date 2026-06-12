@@ -1,0 +1,21 @@
+{
+  "navnamn": "Sponsra",
+  "hero": {
+    "rubrik": "Var med och sponsra",
+    "undertitel": "Hjälp BibelBecca-podden att växa – sponsra utrustning som gör innehållet bättre"
+  },
+  "intro": "BibelBecca drivs helt ideellt. Vill du vara med och möjliggöra podden kan du sponsra konkret utrustning – som mikrofoner, kameror och belysning. Här nedanför ser du vad som behövs just nu. Hör av dig via kontaktsidan så berättar jag mer!",
+  "behov": {
+    "rubrik": "Det här behövs just nu",
+    "undertitel": "Aktuella sponsorbehov – stort som smått, allt gör skillnad"
+  },
+  "ovrigt": {
+    "rubrik": "Andra sätt att stötta",
+    "text": "Allt stöd är inte pengar! Du stöttar också genom att prenumerera på kanalen, gilla och dela videorna, lämna en recension på podden – och framför allt genom att be för arbetet."
+  },
+  "cta": {
+    "rubrik": "Vill du sponsra något?",
+    "text": "Skriv till mig via kontaktformuläret och berätta vad du vill sponsra, så återkommer jag med detaljer.",
+    "knapptext": "Till kontaktsidan"
+  }
+}

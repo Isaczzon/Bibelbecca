@@ -1,0 +1,22 @@
+{
+  "navnamn": "Hem",
+  "hero": {
+    "rubrik": "Lär känna Bibeln på riktigt",
+    "undertitel": "Bibelundervisning, podcast och ärliga samtal om tro – med Becca. Nya videor varje vecka på YouTube.",
+    "knapptext": "Utforska videor & podcast"
+  },
+  "senaste": {
+    "rubrik": "Senaste från kanalen",
+    "undertitel": "Färska videor och poddavsnitt – direkt från BibelBeccas YouTube-kanal"
+  },
+  "om": {
+    "rubrik": "Hej, jag är Becca!",
+    "text": "Jag älskar Bibeln och vill hjälpa fler att upptäcka den. På min kanal svarar jag på bibelfrågor, reder ut vanliga missuppfattningar och samtalar om tro i BibelBecca-podden.",
+    "knapptext": "Mer om mig →"
+  },
+  "cta": {
+    "rubrik": "Vill du vara med och möjliggöra podden?",
+    "text": "BibelBecca drivs ideellt. Genom att sponsra utrustning – som mikrofoner, kameror och belysning – hjälper du innehållet att nå längre.",
+    "knapptext": "Bli sponsor"
+  }
+}
