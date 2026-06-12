@@ -4,10 +4,12 @@ aktiv: media
 pagination:
   data: locales
   size: 1
+  addAllPagesToCollections: true
   alias: loc
 permalink: "/{{ loc.prefix }}innehall/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].media.navnamn }}"
+  beskrivning: "{{ pages[loc.code].media.hero.undertitel }}"
 ---
 {%- from "ikon.njk" import ikon -%}
 {%- set kod = loc.code -%}
@@ -30,11 +32,11 @@ eleventyComputed:
         {% set senaste = poster[0] %}
         <a class="kat-card fade-in" href="/{{ loc.prefix }}innehall/{{ kat.slug }}/">
             <div class="kat-thumb">
-                <img src="https://i.ytimg.com/vi/{{ senaste.data.url | youtubeId }}/hqdefault.jpg" alt="" loading="lazy">
+                <img src="https://i.ytimg.com/vi/{{ senaste.data.url | youtubeId }}/hqdefault.jpg" alt=""{% if loop.index == 1 %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %}>
                 <span class="kat-ikon">{{ kat.ikon }}</span>
             </div>
             <div class="kat-body">
-                <h3>{{ sektion.rubrik }}</h3>
+                <h2>{{ sektion.rubrik }}</h2>
                 <span class="kat-antal">{{ poster.length }} {{ ui.inslag }}</span>
                 <p>{{ sektion.undertitel }}</p>
                 <span class="kat-lank">{{ ui.utforska }} →</span>

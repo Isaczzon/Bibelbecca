@@ -10,13 +10,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if titel %}{{ titel }} – {% endif %}{{ sajten.logotopp }}</title>
+    {%- set sidbeskrivning = beskrivning or (sajten.tagline.split('\n') | first) %}
+    <meta name="description" content="{{ sidbeskrivning }}">
+    {%- if noindex %}
+    <meta name="robots" content="noindex">
+    {%- else %}
+    <link rel="canonical" href="{{ meta.basurl }}{{ page.url | url }}">
+    {%- for l in locales %}
+    <link rel="alternate" hreflang="{{ l.code }}" href="{{ meta.basurl }}{{ page.url | bytLokal(lokal.prefix, l.prefix) | url }}">
+    {%- endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ meta.basurl }}{{ page.url | bytLokal(lokal.prefix, '') | url }}">
+    {%- endif %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ sajten.logotopp }}">
+    <meta property="og:title" content="{% if titel %}{{ titel }} – {% endif %}{{ sajten.logotopp }}">
+    <meta property="og:description" content="{{ sidbeskrivning }}">
+    <meta property="og:url" content="{{ meta.basurl }}{{ page.url | url }}">
+    <meta property="og:image" content="{{ meta.basurl }}{{ '/images/delning.png' | url }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="{{ lokal.iso | replace('-', '_') }}">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    {#- Typsnitten laddas asynkront så att de inte blockerar första målningen;
+        texten visas med systemtypsnitt och byts när fonterna kommit. -#}
+    {%- set fontUrl = "https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&family=Inter:wght@400;500;600&display=swap" %}
+    <link rel="stylesheet" href="{{ fontUrl }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ fontUrl }}"></noscript>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="theme-color" content="#141414">
-    <link rel="stylesheet" href="/css/site.css">
+    {#- CSS:en inlinas så att första målningen inte behöver vänta på en
+        extra nätverksrundtur (sidan är liten nog för att det ska löna sig) -#}
+    <style>{% include "../css/site.css" %}</style>
     <script>
         (function () {
             try {
@@ -74,9 +102,9 @@
             </details>
         </div>
 
-        <div class="hamburger">
+        <button type="button" class="hamburger" aria-label="{{ ui.meny }}" aria-expanded="false" aria-controls="navLinks">
             <span></span><span></span><span></span>
-        </div>
+        </button>
     </div>
 </nav>
 
@@ -94,7 +122,7 @@
             <p>{{ sajten.tagline | nl2br | safe }}</p>
         </div>
         <div>
-            <h4>{{ ui.snabblankar }}</h4>
+            <h2>{{ ui.snabblankar }}</h2>
             <p><a href="/{{ lokal.prefix }}">{{ ui.hem }}</a></p>
             <p><a href="/{{ lokal.prefix }}om/">{{ sidor.om.navnamn }}</a></p>
             <p><a href="/{{ lokal.prefix }}innehall/">{{ sidor.media.navnamn }}</a></p>
@@ -102,19 +130,19 @@
             <p><a href="/{{ lokal.prefix }}kontakt/">{{ sidor.kontakt.navnamn }}</a></p>
         </div>
         <div>
-            <h4>{{ ui.foljOss }}</h4>
+            <h2>{{ ui.foljOss }}</h2>
             {% if sajten.youtube %}<p><a href="{{ sajten.youtube }}" target="_blank" rel="noopener">{{ ikon('youtube') }} YouTube</a></p>{% endif %}
             {% if sajten.instagram %}<p><a href="{{ sajten.instagram }}" target="_blank" rel="noopener">{{ ikon('instagram') }} Instagram</a></p>{% endif %}
             {% if sajten.tiktok %}<p><a href="{{ sajten.tiktok }}" target="_blank" rel="noopener">{{ ikon('tiktok') }} TikTok</a></p>{% endif %}
             {% if sajten.spotify %}<p><a href="{{ sajten.spotify }}" target="_blank" rel="noopener">{{ ikon('spotify') }} Spotify</a></p>{% endif %}
         </div>
         <div>
-            <h4>{{ ui.kontaktRubrik }}</h4>
+            <h2>{{ ui.kontaktRubrik }}</h2>
             <p><a href="mailto:{{ sajten.epost }}">{{ sajten.epost }}</a></p>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© {{ aret }} {{ sajten.logotopp }}. {{ sajten.copyright }}</p>
+        <p>© {{ aret }} {{ sajten.logotopp }}. {{ sajten.copyright }} · <a href="/{{ lokal.prefix }}integritet/">{{ sidor.integritet.navnamn }}</a></p>
     </div>
 </footer>
 

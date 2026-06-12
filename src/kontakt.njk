@@ -4,10 +4,12 @@ aktiv: kontakt
 pagination:
   data: locales
   size: 1
+  addAllPagesToCollections: true
   alias: loc
 permalink: "/{{ loc.prefix }}kontakt/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].kontakt.navnamn }}"
+  beskrivning: "{{ pages[loc.code].kontakt.hero.undertitel }}"
 ---
 {%- from "ikon.njk" import ikon -%}
 {%- set kod = loc.code -%}
@@ -23,7 +25,7 @@ eleventyComputed:
 <section class="section">
     <div class="contact-wrapper">
         <div class="contact-info fade-in">
-            <h3>{{ sajten.logotopp }}</h3>
+            <h2>{{ sajten.logotopp }}</h2>
             <p>{{ ui.kontakt.intro }}</p>
 
             {% if sidan.epost %}
@@ -59,7 +61,7 @@ eleventyComputed:
         </div>
 
         <div class="fade-in">
-            <h3 style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; color:var(--text-heading); margin-bottom:24px;">{{ ui.kontakt.skicka }}</h3>
+            <h2 style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; color:var(--text-heading); margin-bottom:24px;">{{ ui.kontakt.skicka }}</h2>
             <form id="contactForm"
                   data-formspree="{{ sajten.formspree_id }}"
                   data-msg-success="{{ ui.kontakt.tack }}"
@@ -101,12 +103,22 @@ eleventyComputed:
 
                 <p class="form-privacy-notice" style="margin-top:14px; font-size:13px; color:var(--text-muted);">
                     {{ ui.kontakt.samtycke }}
+                    <a href="/{{ loc.prefix }}integritet/">{{ ui.kontakt.policyLank }}</a>.
                 </p>
             </form>
             <script>
                 (function () {
                     const form = document.getElementById('contactForm');
                     if (!form) return;
+
+                    // Förvalt ämne via ?amne=... (t.ex. från "Har du en bibelfråga?")
+                    const onskatAmne = new URLSearchParams(location.search).get('amne');
+                    if (onskatAmne) {
+                        const val = form.querySelector('select[name="subject"]');
+                        if (val && [...val.options].some((o) => o.value === onskatAmne || o.text === onskatAmne)) {
+                            val.value = onskatAmne;
+                        }
+                    }
                     const submitBtn = form.querySelector('button[type="submit"]');
                     const originalBtnText = submitBtn ? submitBtn.textContent : '';
 

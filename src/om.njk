@@ -4,10 +4,12 @@ aktiv: om
 pagination:
   data: locales
   size: 1
+  addAllPagesToCollections: true
   alias: loc
 permalink: "/{{ loc.prefix }}om/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].om.navnamn }}"
+  beskrivning: "{{ pages[loc.code].om.hero.undertitel }}"
 ---
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].om -%}

@@ -37,7 +37,8 @@
       "tack": "Tack för ditt meddelande! Jag återkommer så snart jag kan.",
       "felSvar": "Fel svar – försök igen.",
       "felSkick": "Något gick fel. Försök igen senare eller maila mig direkt.",
-      "samtycke": "Genom att skicka detta meddelande samtycker du till att dina uppgifter behandlas för att kunna besvara ditt meddelande."
+      "samtycke": "Genom att skicka detta meddelande samtycker du till att dina uppgifter behandlas för att kunna besvara ditt meddelande.",
+      "policyLank": "Läs mer i integritetspolicyn"
     },
     "inslag": "inslag",
     "utforska": "Utforska",
@@ -47,7 +48,10 @@
     "foljTiktok": "Följ på TikTok",
     "statPrenumeranter": "prenumeranter",
     "statFoljare": "följare",
-    "statLyssnare": "lyssnare"
+    "statLyssnare": "lyssnare",
+    "meny": "Meny",
+    "sokPlatshallare": "Sök bland inslagen...",
+    "sokTomt": "Inga inslag matchar sökningen."
   },
   "en": {
     "sprak": "Language",
@@ -87,7 +91,8 @@
       "tack": "Thank you for your message! I'll get back to you as soon as I can.",
       "felSvar": "Wrong answer – try again.",
       "felSkick": "Something went wrong. Please try again later or email me directly.",
-      "samtycke": "By sending this message you consent to your information being processed in order to reply to your message."
+      "samtycke": "By sending this message you consent to your information being processed in order to reply to your message.",
+      "policyLank": "Read more in the privacy policy"
     },
     "inslag": "items",
     "utforska": "Explore",
@@ -97,6 +102,9 @@
     "foljTiktok": "Follow on TikTok",
     "statPrenumeranter": "subscribers",
     "statFoljare": "followers",
-    "statLyssnare": "listeners"
+    "statLyssnare": "listeners",
+    "meny": "Menu",
+    "sokPlatshallare": "Search the content...",
+    "sokTomt": "No items match your search."
   }
 }

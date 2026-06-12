@@ -4,11 +4,13 @@ aktiv: media
 pagination:
   data: medievyer
   size: 1
+  addAllPagesToCollections: true
   alias: vy
 permalink: "/{{ vy.loc.prefix }}innehall/{{ vy.kat.slug }}/index.html"
 eleventyComputed:
   lang: "{{ vy.loc.code }}"
   titel: "{{ pages[vy.loc.code].media[vy.kat.nyckel].rubrik }}"
+  beskrivning: "{{ pages[vy.loc.code].media[vy.kat.nyckel].undertitel }}"
 ---
 {%- from "ikon.njk" import ikon -%}
 {%- set loc = vy.loc -%}
@@ -33,25 +35,42 @@ eleventyComputed:
 <section class="section">
     <a class="back-link" href="/{{ loc.prefix }}innehall/">{{ ui.tillbaka }}</a>
 
+    {% if poster.length > 20 %}
+    <div class="sok-rad">
+        <label class="sr-only" for="mediaSok">{{ ui.sokPlatshallare }}</label>
+        <input id="mediaSok" type="search" placeholder="{{ ui.sokPlatshallare }}" autocomplete="off">
+    </div>
+    <p id="sokTomt" class="media-empty" hidden>{{ ui.sokTomt }}</p>
+    {% endif %}
+
     {% if poster.length %}
-    <div class="{% if staende %}shorts-list{% else %}video-list{% endif %}" data-batch="{{ kat.batch }}">
+    {# Bara första batchen renderas som HTML – resten ligger som JSON nedan och
+       byggs av site.js först när besökaren klickar "Visa fler" eller söker.
+       Det håller sidans DOM liten även med hundratals inslag. #}
+    <div class="{% if staende %}shorts-list{% else %}video-list{% endif %}" data-batch="{{ kat.batch }}" data-spela="{{ ui.spela }}"{% if staende %} data-staende="1"{% endif %}>
         {% for post in poster %}
+        {% if loop.index <= kat.batch %}
         {% set ytid = post.data.url | youtubeId %}
-        <div class="video-block fade-in{% if loop.index > kat.batch %} dold{% endif %}">
+        <div class="video-block fade-in">
             <div class="video-embed{% if staende %} video-embed--staende{% endif %}">
                 <button type="button" class="video-facade" data-yt="{{ ytid }}" aria-label="{{ ui.spela }}: {{ post.data.titel }}">
-                    {# Dolda kort får data-src så att miniatyren inte hämtas förrän "Visa fler" klickats #}
-                    <img {% if loop.index > kat.batch %}data-src{% else %}src{% endif %}="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt="" loading="lazy">
+                    <img src="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt=""{% if loop.index == 1 %} loading="eager" fetchpriority="high"{% elif loop.index <= 4 %} loading="eager"{% else %} loading="lazy"{% endif %}>
                     <span class="video-play" aria-hidden="true">▶</span>
                 </button>
             </div>
-            <h3>{{ post.data.titel }}</h3>
+            <h2>{{ post.data.titel }}</h2>
             {% if post.data.datum %}<p class="video-date">{{ post.data.datum | datumLokal(kod) }}</p>{% endif %}
             {% if post.data.beskrivning %}<p class="video-description">{{ post.data.beskrivning }}</p>{% endif %}
         </div>
+        {% endif %}
         {% endfor %}
     </div>
     {% if poster.length > kat.batch %}
+    <script type="application/json" id="merData">[
+        {%- for post in poster %}{% if loop.index > kat.batch %}{% if loop.index > kat.batch + 1 %},{% endif -%}
+        {"y":{{ post.data.url | youtubeId | dump | safe }},"t":{{ post.data.titel | dump | safe }},"d":{{ (post.data.datum | datumLokal(kod) if post.data.datum else "") | dump | safe }},"b":{{ (post.data.beskrivning or "") | dump | safe }}}
+        {%- endif %}{% endfor -%}
+    ]</script>
     <p style="text-align:center; margin-top:40px;">
         <button type="button" class="hero-btn hero-btn--alt visa-fler" data-text="{{ ui.visaFler }}">{{ ui.visaFler }} ({{ poster.length - kat.batch }})</button>
     </p>

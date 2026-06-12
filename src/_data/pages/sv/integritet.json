@@ -1,0 +1,8 @@
+{
+  "navnamn": "Integritet",
+  "hero": {
+    "rubrik": "Integritetspolicy",
+    "undertitel": "Så hanteras dina uppgifter på den här webbplatsen"
+  },
+  "body": "<h2>Kontaktformuläret</h2>\n<p>När du skickar ett meddelande via kontaktformuläret behandlas ditt namn, din e-postadress och ditt meddelande för ett enda syfte: att kunna läsa och besvara det. Meddelandet skickas via tjänsten <a href=\"https://formspree.io\" target=\"_blank\" rel=\"noopener\">Formspree</a> till BibelBeccas e-post. Uppgifterna delas inte med någon annan och används inte för marknadsföring. Vill du att ditt meddelande raderas, hör av dig så ordnas det.</p>\n<h2>Inga kakor eller spårning</h2>\n<p>Webbplatsen använder inga kakor och ingen spårning. De enda inställningar som sparas i din webbläsare (lokalt, lämnar aldrig din enhet) är ditt val av ljust/mörkt läge och språk.</p>\n<h2>YouTube-videor</h2>\n<p>Videorna på sidan laddas först när du klickar på spela. De spelas via YouTubes integritetsförbättrade läge (youtube-nocookie.com), som inte sätter kakor förrän du startar uppspelningen. När du spelar en video gäller <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Googles integritetspolicy</a>.</p>\n<h2>Frågor?</h2>\n<p>Hör av dig via kontaktsidan eller maila direkt – kontaktuppgifterna finns i sidfoten.</p>"
+}

@@ -4,10 +4,10 @@
     --svart-mjuk: #1f1f1f;
     --guld: #E5C04B;
     --guld-ljus: #F2DC7E;
-    --guld-mork: #9A7B1E;
+    --guld-mork: #7D641A;
     --guld-pale: #FAF4DE;
     --gray-dark: #4A4A4A;
-    --gray-mid: #7A7A7A;
+    --gray-mid: #757575;
     --gray-light: #B0B0B0;
     --gray-pale: #EDEDED;
     --off-white: #FBFAF7;
@@ -137,6 +137,8 @@ nav#navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
     gap: 5px;
     cursor: pointer;
     padding: 8px;
+    background: none;
+    border: 0;
 }
 .hamburger span {
     width: 24px;
@@ -389,6 +391,7 @@ main { padding-top: 72px; }
    display:none gör att lazy-laddade miniatyrer inte hämtas i förväg. */
 .video-block.dold { display: none; }
 button.hero-btn { font-family: 'Inter', sans-serif; cursor: pointer; }
+.video-block h2,
 .video-block h3 {
     margin: 0;
     padding: 14px 18px 4px;
@@ -463,7 +466,7 @@ button.hero-btn { font-family: 'Inter', sans-serif; cursor: pointer; }
     color: var(--text-body);
     font-size: 14px;
 }
-.video-block h3 + .video-date { padding-bottom: 12px; }
+.video-block :is(h2, h3) + .video-date { padding-bottom: 12px; }
 .video-date + .video-description { padding-top: 6px; }
 
 /* === SHORTS (stående 9:16-format, fler per rad) === */
@@ -479,9 +482,10 @@ button.hero-btn { font-family: 'Inter', sans-serif; cursor: pointer; }
     .shorts-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .video-embed--staende { aspect-ratio: 9 / 16; }
-.shorts-list .video-block h3 { font-size: 14px; padding: 12px 14px 4px; }
+.shorts-list .video-block h2,
+.video-block h3 { font-size: 14px; padding: 12px 14px 4px; }
 .shorts-list .video-date { padding: 0 14px; font-size: 12px; }
-.shorts-list .video-block h3 + .video-date { padding-bottom: 12px; }
+.shorts-list .video-block :is(h2, h3) + .video-date { padding-bottom: 12px; }
 .shorts-list .video-block .video-description { padding: 6px 14px 14px; font-size: 13px; }
 
 /* === KATEGORIKORT (navet Titta & lyssna) === */
@@ -535,7 +539,7 @@ button.hero-btn { font-family: 'Inter', sans-serif; cursor: pointer; }
     font-size: 22px;
 }
 .kat-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex-grow: 1; }
-.kat-body h3 {
+.kat-body h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 19px;
@@ -567,6 +571,51 @@ button.hero-btn { font-family: 'Inter', sans-serif; cursor: pointer; }
     cursor: pointer;
 }
 .back-link:hover { text-decoration: underline; }
+
+/* === SÖKFÄLT & FRÅGA-RUTA === */
+.sok-rad { max-width: 480px; margin: 0 0 32px; }
+.sok-rad input {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    background: var(--bg-card);
+    color: var(--text-strong);
+    transition: border-color 0.2s;
+}
+.sok-rad input:focus {
+    outline: none;
+    border-color: var(--guld);
+    box-shadow: 0 0 0 3px rgba(229,192,75,0.18);
+}
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.video-block.dold-sok { display: none; }
+.fraga-ruta {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 40px 32px;
+    border: 1px dashed var(--guld);
+    border-radius: 16px;
+    background: var(--bg-card);
+}
+.fraga-ruta h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    color: var(--text-heading);
+    margin-bottom: 12px;
+}
+.fraga-ruta p { color: var(--text-body); margin-bottom: 22px; }
 
 /* === EMPTY STATE (media-sektioner utan inlägg) === */
 .media-empty {
@@ -717,7 +766,7 @@ button.hero-btn { font-family: 'Inter', sans-serif; cursor: pointer; }
     gap: 48px;
     align-items: start;
 }
-.contact-info h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; color: var(--text-heading); margin-bottom: 16px; }
+.contact-info h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; color: var(--text-heading); margin-bottom: 16px; }
 .contact-info p { color: var(--text-body); margin-bottom: 12px; line-height: 1.7; }
 .contact-detail {
     display: flex;
@@ -789,9 +838,11 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
 }
-footer h4 { color: var(--guld); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 16px; }
+footer h2 { color: var(--guld); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 16px; }
 footer p, footer a { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); text-decoration: none; }
 footer a:hover { color: var(--guld-ljus); }
+.footer-bottom a { color: rgba(255,255,255,0.6); }
+.footer-bottom a:hover { color: var(--guld-ljus); }
 .footer-bottom {
     max-width: 1200px;
     margin: 40px auto 0;
@@ -857,6 +908,17 @@ footer a:hover { color: var(--guld-ljus); }
         transition-duration: 0.01ms !important;
     }
     .fade-in { opacity: 1; }
+}
+
+/* === LÄNKAR I LÖPTEXT ===
+   Understrykning så att länkar inte enbart skiljs ut med färg (WCAG 1.4.1) */
+.footer-bottom a,
+.form-privacy-notice a,
+.subpage-content p a,
+.sponsor-card p a,
+.fraga-ruta p a,
+.media-empty p a {
+    text-decoration: underline;
 }
 
 /* === VARUMÄRKESIKONER (SVG i currentColor) === */

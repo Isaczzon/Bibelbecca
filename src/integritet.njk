@@ -1,0 +1,25 @@
+---
+layout: layout.njk
+pagination:
+  data: locales
+  size: 1
+  addAllPagesToCollections: true
+  alias: loc
+permalink: "/{{ loc.prefix }}integritet/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].integritet.hero.rubrik }}"
+  beskrivning: "{{ pages[loc.code].integritet.hero.undertitel }}"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].integritet -%}
+
+<section class="subpage-hero">
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    <div class="subpage-content" style="padding-top:0; padding-bottom:0;">
+        {{ sidan.body | safe }}
+    </div>
+</section>

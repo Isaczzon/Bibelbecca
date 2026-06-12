@@ -58,6 +58,14 @@ collections:
               - { name: rubrik, label: Rubrik, widget: string, i18n: true }
               - { name: text, label: Text, widget: text, i18n: true }
               - { name: knapptext, label: Knapptext, widget: string, i18n: true }
+          - name: fraga
+            label: Har du en bibelfråga? (sektion)
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: text, label: Text, widget: text, i18n: true }
+              - { name: knapptext, label: Knapptext, widget: string, i18n: true }
           - name: cta
             label: Avslutande sektion (sponsring)
             widget: object
@@ -193,6 +201,21 @@ collections:
               - { name: rubrik, label: Rubrik, widget: string, i18n: true }
               - { name: text, label: Text, widget: text, i18n: true }
               - { name: knapptext, label: Knapptext, widget: string, i18n: true }
+
+      - name: integritet
+        label: Integritetspolicy
+        file: src/_data/pages/{{locale}}/integritet.json
+        i18n: true
+        fields:
+          - { name: navnamn, label: Namn i sidfoten, widget: string, i18n: true }
+          - name: hero
+            label: Toppsektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+          - { name: body, label: Innehåll (HTML), widget: markdown, i18n: true }
 
       - name: kontakt
         label: Kontakt

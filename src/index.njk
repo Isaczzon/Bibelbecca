@@ -4,8 +4,11 @@ aktiv: hem
 pagination:
   data: locales
   size: 1
+  addAllPagesToCollections: true
   alias: loc
 permalink: "/{{ loc.prefix }}index.html"
+eleventyComputed:
+  beskrivning: "{{ pages[loc.code].hem.om.text }}"
 ---
 {%- from "ikon.njk" import ikon -%}
 {%- set kod = loc.code -%}
@@ -67,7 +70,7 @@ permalink: "/{{ loc.prefix }}index.html"
         <div class="video-block fade-in">
             <div class="video-embed">
                 <button type="button" class="video-facade" data-yt="{{ ytid }}" aria-label="{{ ui.spela }}: {{ inslag.data.titel }}">
-                    <img src="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt="" loading="lazy">
+                    <img src="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt="" loading="lazy" decoding="async">
                     <span class="video-play" aria-hidden="true">▶</span>
                 </button>
             </div>
@@ -94,6 +97,16 @@ permalink: "/{{ loc.prefix }}index.html"
         </div>
     </div>
 </section>
+
+{% if sidan.fraga.rubrik %}
+<section class="section" style="text-align:center;">
+    <div class="fraga-ruta fade-in">
+        <h2>💬 {{ sidan.fraga.rubrik }}</h2>
+        <p>{{ sidan.fraga.text }}</p>
+        <a class="hero-btn" href="/{{ loc.prefix }}kontakt/?amne={{ ui.kontakt.amnen[1] | urlencode }}">{{ sidan.fraga.knapptext }} →</a>
+    </div>
+</section>
+{% endif %}
 
 {% if sidan.cta.rubrik or sidan.cta.text %}
 <section class="section" style="text-align:center;">

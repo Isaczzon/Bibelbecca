@@ -4,10 +4,12 @@ aktiv: sponsra
 pagination:
   data: locales
   size: 1
+  addAllPagesToCollections: true
   alias: loc
 permalink: "/{{ loc.prefix }}sponsra/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].sponsra.navnamn }}"
+  beskrivning: "{{ pages[loc.code].sponsra.hero.undertitel }}"
 ---
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].sponsra -%}
