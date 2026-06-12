@@ -50,6 +50,31 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     );
 
+    // "Visa fler": kategorisidor visar bara första batchen kort;
+    // knappen avtäcker nästa omgång och visar hur många som är kvar
+    document.querySelectorAll('.visa-fler').forEach((btn) => {
+        const grid = btn.closest('section')?.querySelector('[data-batch]');
+        if (!grid) return;
+        btn.addEventListener('click', () => {
+            const batch = parseInt(grid.getAttribute('data-batch'), 10) || 12;
+            const dolda = grid.querySelectorAll('.video-block.dold');
+            for (let i = 0; i < batch && i < dolda.length; i++) {
+                const img = dolda[i].querySelector('img[data-src]');
+                if (img) {
+                    img.src = img.getAttribute('data-src');
+                    img.removeAttribute('data-src');
+                }
+                dolda[i].classList.remove('dold');
+            }
+            const kvar = grid.querySelectorAll('.video-block.dold').length;
+            if (kvar > 0) {
+                btn.textContent = btn.getAttribute('data-text') + ' (' + kvar + ')';
+            } else {
+                btn.parentElement.remove();
+            }
+        });
+    });
+
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         const updateIcon = () => {

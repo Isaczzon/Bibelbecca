@@ -41,7 +41,8 @@
     },
     "inslag": "inslag",
     "utforska": "Utforska",
-    "tillbaka": "← Alla kategorier"
+    "tillbaka": "← Alla kategorier",
+    "visaFler": "Visa fler"
   },
   "en": {
     "sprak": "Language",
@@ -85,6 +86,7 @@
     },
     "inslag": "items",
     "utforska": "Explore",
-    "tillbaka": "← All categories"
+    "tillbaka": "← All categories",
+    "visaFler": "Show more"
   }
 }

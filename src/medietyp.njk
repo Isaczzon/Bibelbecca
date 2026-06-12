@@ -33,13 +33,14 @@ eleventyComputed:
     <a class="back-link" href="/{{ loc.prefix }}innehall/">{{ ui.tillbaka }}</a>
 
     {% if poster.length %}
-    <div class="{% if staende %}shorts-list{% else %}video-list{% endif %}">
+    <div class="{% if staende %}shorts-list{% else %}video-list{% endif %}" data-batch="{{ kat.batch }}">
         {% for post in poster %}
         {% set ytid = post.data.url | youtubeId %}
-        <div class="video-block fade-in">
+        <div class="video-block fade-in{% if loop.index > kat.batch %} dold{% endif %}">
             <div class="video-embed{% if staende %} video-embed--staende{% endif %}">
                 <button type="button" class="video-facade" data-yt="{{ ytid }}" aria-label="{{ ui.spela }}: {{ post.data.titel }}">
-                    <img src="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt="" loading="lazy">
+                    {# Dolda kort får data-src så att miniatyren inte hämtas förrän "Visa fler" klickats #}
+                    <img {% if loop.index > kat.batch %}data-src{% else %}src{% endif %}="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt="" loading="lazy">
                     <span class="video-play" aria-hidden="true">▶</span>
                 </button>
             </div>
@@ -49,6 +50,11 @@ eleventyComputed:
         </div>
         {% endfor %}
     </div>
+    {% if poster.length > kat.batch %}
+    <p style="text-align:center; margin-top:40px;">
+        <button type="button" class="hero-btn hero-btn--alt visa-fler" data-text="{{ ui.visaFler }}">{{ ui.visaFler }} ({{ poster.length - kat.batch }})</button>
+    </p>
+    {% endif %}
     {% else %}
     <div class="media-empty fade-in">
         <p>{{ ui.mediaTomt }}</p>

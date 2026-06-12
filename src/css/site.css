@@ -317,6 +317,10 @@ main { padding-top: 72px; }
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .video-block:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+/* Dolda kort bortom första batchen – visas med "Visa fler"-knappen.
+   display:none gör att lazy-laddade miniatyrer inte hämtas i förväg. */
+.video-block.dold { display: none; }
+button.hero-btn { font-family: 'Inter', sans-serif; cursor: pointer; }
 .video-block h3 {
     margin: 0;
     padding: 14px 18px 4px;

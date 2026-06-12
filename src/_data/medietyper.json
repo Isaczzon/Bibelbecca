@@ -1,8 +1,8 @@
 [
-  { "slug": "videor", "typ": "Video", "nyckel": "videor", "ikon": "🎬" },
-  { "slug": "podcast", "typ": "Podcast", "nyckel": "podcast", "ikon": "🎙️" },
-  { "slug": "serien", "typ": "Serie", "nyckel": "serier", "ikon": "🛤️" },
-  { "slug": "shorts", "typ": "Short", "nyckel": "shorts", "ikon": "📱" },
-  { "slug": "lives", "typ": "Live", "nyckel": "lives", "ikon": "🔴" },
-  { "slug": "studietips", "typ": "Studietips", "nyckel": "studietips", "ikon": "💡" }
+  { "slug": "videor", "typ": "Video", "nyckel": "videor", "ikon": "🎬", "batch": 12 },
+  { "slug": "podcast", "typ": "Podcast", "nyckel": "podcast", "ikon": "🎙️", "batch": 12 },
+  { "slug": "serien", "typ": "Serie", "nyckel": "serier", "ikon": "🛤️", "batch": 13 },
+  { "slug": "shorts", "typ": "Short", "nyckel": "shorts", "ikon": "📱", "batch": 24 },
+  { "slug": "lives", "typ": "Live", "nyckel": "lives", "ikon": "🔴", "batch": 12 },
+  { "slug": "studietips", "typ": "Studietips", "nyckel": "studietips", "ikon": "💡", "batch": 12 }
 ]
