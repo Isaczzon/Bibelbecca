@@ -170,11 +170,37 @@ main { padding-top: 72px; }
     overflow: hidden;
 }
 
+/* Guldskimret driver knappt märkbart över läderbakgrunden (endast transform → GPU) */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(ellipse at 35% 35%, rgba(229,192,75,0.12) 0%, rgba(229,192,75,0) 55%);
+    animation: guldskimmer 75s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+@keyframes guldskimmer {
+    from { transform: translate3d(-4%, -3%, 0) scale(1); }
+    to   { transform: translate3d(5%, 4%, 0) scale(1.15); }
+}
+
 .hero-content {
     position: relative;
     z-index: 1;
     max-width: 760px;
 }
+
+/* Entré: badge, rubrik, tagline och knappar glider in i tur och ordning */
+@keyframes entre {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.hero-badge { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.05s backwards; }
+.hero h1 { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.16s backwards; }
+.hero p { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.3s backwards; }
+.hero-content .hero-btn:nth-of-type(1) { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.45s backwards; }
+.hero-content .hero-btn:nth-of-type(2) { animation: entre 0.7s cubic-bezier(0.22, 0.9, 0.35, 1) 0.57s backwards; }
 .hero-badge {
     display: inline-block;
     padding: 6px 16px;
@@ -266,11 +292,24 @@ main { padding-top: 72px; }
         linear-gradient(150deg, #1d1d1d 0%, #111111 100%);
     color: white;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
+.subpage-hero::before {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(ellipse at 60% 40%, rgba(229,192,75,0.10) 0%, rgba(229,192,75,0) 55%);
+    animation: guldskimmer 75s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+.subpage-hero > * { position: relative; z-index: 1; }
 .subpage-hero h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: clamp(2rem, 5vw, 3rem);
+    animation: entre 0.6s cubic-bezier(0.22, 0.9, 0.35, 1) 0.05s backwards;
 }
 .subpage-hero p {
     font-family: 'Playfair Display', serif;
@@ -278,6 +317,7 @@ main { padding-top: 72px; }
     color: var(--guld-ljus);
     margin-top: 12px;
     font-size: 19px;
+    animation: entre 0.6s cubic-bezier(0.22, 0.9, 0.35, 1) 0.18s backwards;
 }
 
 .subpage-content {
@@ -756,15 +796,39 @@ footer a:hover { color: var(--guld-ljus); }
     .logo-bottom { display: none; } /* taglinen får inte plats bredvid hamburgermenyn */
 }
 
-/* === ANIMATION === */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
+/* === ANIMATION ===
+   Fade-in vid scroll som animation (inte transition) så att kortens
+   hover-effekter förblir snabba. --fade-delay sätts per kort i JS för
+   en svepande "våg" i rutnäten. fill-mode backwards håller kortet
+   osynligt under fördröjningen; efteråt styr ordinarie regler. */
+.fade-in { opacity: 0; }
 .fade-in.visible {
     opacity: 1;
-    transform: translateY(0);
+    animation: fadeInUpp 0.6s ease backwards;
+    animation-delay: var(--fade-delay, 0s);
+}
+@keyframes fadeInUpp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Spelknappen "andas" en guldring vid hover */
+.video-facade:hover .video-play {
+    animation: pulsGuld 1.4s ease-out;
+}
+@keyframes pulsGuld {
+    0%   { box-shadow: 0 0 0 0 rgba(229,192,75,0.55); }
+    100% { box-shadow: 0 0 0 16px rgba(229,192,75,0); }
+}
+
+/* Besökare som valt bort rörelser i sitt OS får en stillsam sajt */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .fade-in { opacity: 1; }
 }
 
 /* === VARUMÄRKESIKONER (SVG i currentColor) === */

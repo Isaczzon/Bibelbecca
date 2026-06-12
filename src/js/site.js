@@ -29,12 +29,44 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     }
 
+    // Svepande fördröjning per kort i rutnäten – ger en "våg" när de tonas in
+    document.querySelectorAll('.video-list, .shorts-list, .kat-grid, .sponsor-grid, .tack-grid').forEach((grid) =>
+        [...grid.children].forEach((el, i) => {
+            if (el.classList.contains('fade-in')) el.style.setProperty('--fade-delay', ((i % 6) * 80) + 'ms');
+        })
+    );
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Räknarna på kategorikorten tickar upp från noll när kortet blir synligt
+    const lugntLage = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!lugntLage) {
+        const raknare = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                raknare.unobserve(entry.target);
+                const el = entry.target;
+                const m = el.textContent.match(/\d+/);
+                if (!m) return;
+                const mal = parseInt(m[0], 10);
+                const suffix = el.textContent.slice(m.index + m[0].length);
+                const start = performance.now();
+                const tid = 900;
+                const tick = (nu) => {
+                    const t = Math.min((nu - start) / tid, 1);
+                    el.textContent = Math.round(mal * (1 - Math.pow(1 - t, 3))) + suffix;
+                    if (t < 1) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+            });
+        }, { threshold: 0.4 });
+        document.querySelectorAll('.kat-antal').forEach((el) => raknare.observe(el));
+    }
 
     // Klicka-för-att-spela: miniatyrbilden byts mot YouTube-spelaren först
     // vid klick, så att sidor med många videor laddar snabbt
