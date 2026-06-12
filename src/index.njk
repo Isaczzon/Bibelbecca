@@ -35,9 +35,13 @@ permalink: "/{{ loc.prefix }}index.html"
     </div>
     <div class="video-list">
         {% for inslag in allaMedia %}{% if loop.index <= 3 %}
+        {% set ytid = inslag.data.url | youtubeId %}
         <div class="video-block fade-in">
             <div class="video-embed">
-                <iframe src="https://www.youtube-nocookie.com/embed/{{ inslag.data.url | youtubeId }}" title="{{ inslag.data.titel }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <button type="button" class="video-facade" data-yt="{{ ytid }}" aria-label="{{ ui.spela }}: {{ inslag.data.titel }}">
+                    <img src="https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg" alt="" loading="lazy">
+                    <span class="video-play" aria-hidden="true">▶</span>
+                </button>
             </div>
             <h3>{{ inslag.data.titel }}</h3>
             {% if inslag.data.datum %}<p class="video-date">{{ inslag.data.datum | datumLokal(kod) }}</p>{% endif %}

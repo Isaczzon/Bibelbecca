@@ -79,5 +79,9 @@ Gå till repots **Settings → Collaborators**, klicka **Add people** och ange B
 ## Att uppdatera innan lansering
 
 - [ ] `src/admin/config.yml`: rätt `repo:` och Worker-URL (`base_url`)
-- [ ] `src/_data/sajt/sv.json` + `en.json`: riktig e-postadress (nu står platshållaren `kontakt@bibelbecca.se`), Spotify-länk och Formspree-ID
-- [ ] Seedade videor/poddavsnitt i `src/media/` och sponsorbehov i `src/sponsorbehov/` är exempel – Becca uppdaterar dem i CMS:et
+- [ ] `src/_data/sajt/sv.json` + `en.json`: Formspree-ID (e-post, Spotify, sociala länkar är redan ifyllda)
+- [ ] Sponsorbehoven i `src/sponsorbehov/` är exempel – Becca uppdaterar dem i CMS:et
+
+> Allt kanalinnehåll (videor, shorts, podcast, lives) importerades från YouTube 2026-06-12.
+> Nya inslag läggs till i CMS:et under **Videor, podcast & lives** – klistra in YouTube-länken och välj typ.
+> Engelska titlar är översatta för videor/podcast/lives; shorts behåller den svenska titeln på båda språken.

@@ -24,9 +24,13 @@ eleventyComputed:
     {% if inslag.length %}
     <div class="{% if staende %}shorts-list{% else %}video-list{% endif %}">
         {% for post in inslag %}
+        {% set ytid = post.data.url | youtubeId %}
         <div class="video-block fade-in">
             <div class="video-embed{% if staende %} video-embed--staende{% endif %}">
-                <iframe src="https://www.youtube-nocookie.com/embed/{{ post.data.url | youtubeId }}" title="{{ post.data.titel }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <button type="button" class="video-facade" data-yt="{{ ytid }}" aria-label="{{ ui.spela }}: {{ post.data.titel }}">
+                    <img src="https://i.ytimg.com/vi/{{ ytid }}/{% if staende %}oardefault{% else %}hqdefault{% endif %}.jpg" alt="" loading="lazy"{% if staende %} onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/{{ ytid }}/hqdefault.jpg';"{% endif %}>
+                    <span class="video-play" aria-hidden="true">▶</span>
+                </button>
             </div>
             <h3>{{ post.data.titel }}</h3>
             {% if post.data.datum %}<p class="video-date">{{ post.data.datum | datumLokal(kod) }}</p>{% endif %}

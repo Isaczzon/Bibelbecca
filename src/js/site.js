@@ -36,6 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    // Klicka-för-att-spela: miniatyrbilden byts mot YouTube-spelaren först
+    // vid klick, så att sidor med många videor laddar snabbt
+    document.querySelectorAll('.video-facade').forEach((btn) =>
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-yt');
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1';
+            iframe.title = btn.getAttribute('aria-label') || '';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            btn.replaceWith(iframe);
+        })
+    );
+
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         const updateIcon = () => {
