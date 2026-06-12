@@ -767,6 +767,13 @@ footer a:hover { color: var(--guld-ljus); }
     transform: translateY(0);
 }
 
+/* === VARUMÄRKESIKONER (SVG i currentColor) === */
+.ikon {
+    display: inline-block;
+    vertical-align: -0.15em;
+    flex-shrink: 0;
+}
+
 /* === SPRÅKVÄLJARE & TEMAKNAPP === */
 .nav-actions {
     display: flex;

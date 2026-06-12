@@ -10,6 +10,7 @@ eleventyComputed:
   lang: "{{ vy.loc.code }}"
   titel: "{{ pages[vy.loc.code].media[vy.kat.nyckel].rubrik }}"
 ---
+{%- from "ikon.njk" import ikon -%}
 {%- set loc = vy.loc -%}
 {%- set kat = vy.kat -%}
 {%- set kod = loc.code -%}
@@ -64,7 +65,7 @@ eleventyComputed:
 
     {% if kat.typ == 'Podcast' and sajten.spotify %}
     <p style="text-align:center; margin-top:40px;">
-        <a class="hero-btn hero-btn--alt" href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 {{ ui.lyssnaSpotify }}</a>
+        <a class="hero-btn hero-btn--alt" href="{{ sajten.spotify }}" target="_blank" rel="noopener">{{ ikon('spotify') }} {{ ui.lyssnaSpotify }}</a>
     </p>
     {% endif %}
 </section>

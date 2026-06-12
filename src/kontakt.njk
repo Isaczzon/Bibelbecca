@@ -9,6 +9,7 @@ permalink: "/{{ loc.prefix }}kontakt/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].kontakt.navnamn }}"
 ---
+{%- from "ikon.njk" import ikon -%}
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].kontakt -%}
 {%- set ui = t[kod] -%}
@@ -33,25 +34,25 @@ eleventyComputed:
             {% endif %}
             {% if sajten.youtube %}
             <div class="contact-detail">
-                <div class="icon">▶</div>
+                <div class="icon">{{ ikon('youtube', 18) }}</div>
                 <div><strong>YouTube</strong><br><a href="{{ sajten.youtube }}" target="_blank" rel="noopener">@bibelbecca</a></div>
             </div>
             {% endif %}
             {% if sajten.instagram %}
             <div class="contact-detail">
-                <div class="icon">📷</div>
+                <div class="icon">{{ ikon('instagram', 18) }}</div>
                 <div><strong>Instagram</strong><br><a href="{{ sajten.instagram }}" target="_blank" rel="noopener">@bibelbecca</a></div>
             </div>
             {% endif %}
             {% if sajten.tiktok %}
             <div class="contact-detail">
-                <div class="icon">🎵</div>
+                <div class="icon">{{ ikon('tiktok', 18) }}</div>
                 <div><strong>TikTok</strong><br><a href="{{ sajten.tiktok }}" target="_blank" rel="noopener">@bibelbecca</a></div>
             </div>
             {% endif %}
             {% if sajten.spotify %}
             <div class="contact-detail">
-                <div class="icon">🎧</div>
+                <div class="icon">{{ ikon('spotify', 18) }}</div>
                 <div><strong>Spotify</strong><br><a href="{{ sajten.spotify }}" target="_blank" rel="noopener">BibelBecca podcast</a></div>
             </div>
             {% endif %}

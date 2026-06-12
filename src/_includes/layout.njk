@@ -1,3 +1,4 @@
+{%- from "ikon.njk" import ikon -%}
 {%- set kod = loc.code if loc else (lang or 'sv') -%}
 {%- set lokal = locales | lokalFor(kod) -%}
 {%- set ui = t[kod] -%}
@@ -102,10 +103,10 @@
         </div>
         <div>
             <h4>{{ ui.foljOss }}</h4>
-            {% if sajten.youtube %}<p><a href="{{ sajten.youtube }}" target="_blank" rel="noopener">▶ YouTube</a></p>{% endif %}
-            {% if sajten.instagram %}<p><a href="{{ sajten.instagram }}" target="_blank" rel="noopener">📷 Instagram</a></p>{% endif %}
-            {% if sajten.tiktok %}<p><a href="{{ sajten.tiktok }}" target="_blank" rel="noopener">🎵 TikTok</a></p>{% endif %}
-            {% if sajten.spotify %}<p><a href="{{ sajten.spotify }}" target="_blank" rel="noopener">🎧 Spotify</a></p>{% endif %}
+            {% if sajten.youtube %}<p><a href="{{ sajten.youtube }}" target="_blank" rel="noopener">{{ ikon('youtube') }} YouTube</a></p>{% endif %}
+            {% if sajten.instagram %}<p><a href="{{ sajten.instagram }}" target="_blank" rel="noopener">{{ ikon('instagram') }} Instagram</a></p>{% endif %}
+            {% if sajten.tiktok %}<p><a href="{{ sajten.tiktok }}" target="_blank" rel="noopener">{{ ikon('tiktok') }} TikTok</a></p>{% endif %}
+            {% if sajten.spotify %}<p><a href="{{ sajten.spotify }}" target="_blank" rel="noopener">{{ ikon('spotify') }} Spotify</a></p>{% endif %}
         </div>
         <div>
             <h4>{{ ui.kontaktRubrik }}</h4>
