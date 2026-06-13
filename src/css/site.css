@@ -56,6 +56,14 @@ body {
     line-height: 1.6;
 }
 
+/* Basfärg för länkar – annars får ostylade länkar webbläsarens standardblå,
+   som har för dålig kontrast mot mörka ytor. Specifika regler vinner ändå. */
+a { color: var(--accent); }
+
+/* Formulärfel – tillräcklig kontrast i båda lägena */
+.form-fel { color: #B00020; }
+[data-theme="dark"] .form-fel { color: #FF9B9B; }
+
 /* === NAVIGATION === */
 nav#navbar {
     position: fixed;

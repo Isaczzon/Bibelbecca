@@ -96,7 +96,7 @@ eleventyComputed:
                 <div class="form-group">
                     <label for="captchaInput">{{ ui.kontakt.sakerhetsfraga }} <strong><span id="capA">?</span> + <span id="capB">?</span></strong>?</label>
                     <input id="captchaInput" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="{{ ui.kontakt.svar }}" required>
-                    <div id="captchaError" style="color:#b00020; font-size:13px; margin-top:6px; display:none;"></div>
+                    <div id="captchaError" class="form-fel" style="font-size:13px; margin-top:6px; display:none;"></div>
                 </div>
 
                 <button type="submit" class="submit-btn">{{ ui.kontakt.knapp }}</button>
